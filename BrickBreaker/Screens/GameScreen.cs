@@ -1,7 +1,7 @@
 ﻿/*  Created by: 
  *  Project: Brick Breaker
  *  Date: 
- */ 
+ */
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,6 +12,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
+using System.Diagnostics;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace BrickBreaker
 {
@@ -29,6 +31,15 @@ namespace BrickBreaker
         Paddle paddle;
         Ball ball;
 
+        List<Ball> balls = new List<Ball>();
+
+        // lists for powerups
+        List<Powers> powerList = new List<Powers>();
+
+        Stopwatch breakTimer = new Stopwatch();
+        Stopwatch gravityTimer = new Stopwatch();
+        Stopwatch extendTimer = new Stopwatch();
+
         // list of all blocks for current level
         List<Block> blocks = new List<Block>();
 
@@ -37,6 +48,15 @@ namespace BrickBreaker
         SolidBrush ballBrush = new SolidBrush(Color.White);
         SolidBrush blockBrush = new SolidBrush(Color.Red);
 
+        //placeholder brushes for testing powerups
+        SolidBrush breakThrough = new SolidBrush(Color.White);
+        SolidBrush multiBall = new SolidBrush(Color.Blue);
+        SolidBrush gravity = new SolidBrush(Color.Purple);
+        SolidBrush extendPaddle = new SolidBrush(Color.Yellow);
+        SolidBrush health = new SolidBrush(Color.Red);
+
+        //declare random
+        public static Random r = new Random();
         #endregion
 
         public GameScreen()
@@ -71,11 +91,12 @@ namespace BrickBreaker
             int ySpeed = 6;
             int ballSize = 20;
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
+            balls.Add(ball);
 
             #region Creates blocks for generic level. Need to replace with code that loads levels.
-            
+
             //TODO - replace all the code in this region eventually with code that loads levels from xml files
-            
+
             blocks.Clear();
             int x = 10;
 
@@ -137,45 +158,147 @@ namespace BrickBreaker
             }
 
             // Move ball
-            ball.Move();
-
-            // Check for collision with top and side walls
-            ball.WallCollision(this);
-
-            // Check for ball hitting bottom of screen
-            if (ball.BottomCollision(this))
+            foreach (Ball b in balls)
             {
-                lives--;
-
-                // Moves the ball back to origin
-                ball.x = ((paddle.x - (ball.size / 2)) + (paddle.width / 2));
-                ball.y = (this.Height - paddle.height) - 85;
-
-                if (lives == 0)
-                {
-                    gameTimer.Enabled = false;
-                    OnEnd();
-                }
+                b.Move();
             }
 
-            // Check for collision of ball with paddle, (incl. paddle movement)
-            ball.PaddleCollision(paddle);
 
-            // Check if ball has collided with any blocks
-            foreach (Block b in blocks)
+            // Check for collision with top and side walls
+            foreach (Ball b in balls)
             {
-                if (ball.BlockCollision(b))
-                {
-                    blocks.Remove(b);
+                b.WallCollision(this);
+            }
 
-                    if (blocks.Count == 0)
+
+            // Check for ball hitting bottom of screen
+            for (int i = 0; i < balls.Count; i++)
+            {
+                if (ball.BottomCollision(this))
+                {
+                    balls.RemoveAt(i);
+
+                    if (balls.Count == 0)
+                    {
+                        lives--;
+
+                        // Moves the ball back to origin
+                        balls.Add(ball);
+                        ball.x = ((paddle.x - (ball.size / 2)) + (paddle.width / 2));
+                        ball.y = (this.Height - paddle.height) - 85;
+                    }
+
+                    if (lives == 0)
                     {
                         gameTimer.Enabled = false;
                         OnEnd();
                     }
+                }
+            }
+            // Check for collision of ball with paddle, (incl. paddle movement)
+            foreach (Ball b in balls)
+            {
+                b.PaddleCollision(paddle);
+            }
 
+            // Check if ball has collided with any blocks
+            foreach (Block b in blocks)
+            {
+                for (int i = 0; i < balls.Count; i++)
+                {
+                    if (balls[i].BlockCollision(b))
+                    {
+                        //random chance to spawn a powerup
+                        if (r.Next(1, 5) == 1)
+                        {
+                            Powers power = new Powers(b.x + (b.width / 2), b.y + (b.height / 2), "");
+                            powerList.Add(power);
+                        }
+                        blocks.Remove(b);
+
+                        if (blocks.Count == 0)
+                        {
+                            gameTimer.Enabled = false;
+                            OnEnd();
+                        }
+
+                        return;
+                    }
+                }
+
+            }
+
+            // Powers
+            foreach (Powers p in powerList)
+            {
+                //move each powerBall
+                p.Move();
+
+                //check for paddle collision to see if the player deserves powerup
+                if (p.Collision(paddle))
+                {
+                    //determine what kind of powerup it is
+                    switch (p.type)
+                    {
+                        case "Breakthrough":
+                            //unstoppable ball for duration of time
+
+                            break;
+                        case "Gravity":
+                            //arc balls back upwards 
+
+                            break;
+                        case "Health":
+                            //grants the player an extra life, capped at 5 lives
+                            if (lives < 5)
+                            {
+                                lives++;
+                            }
+                            break;
+                        case "MultiBall":
+                            //creates a new ball 
+                            Ball newBall = new Ball(ball.x, ball.y, ball.xSpeed * -1, ball.ySpeed, ball.size);
+                            balls.Add(newBall);
+                            break;
+                        case "ExtendPaddle":
+                            //extends paddle
+                            if (extendTimer.IsRunning == true)
+                            {
+                                extendTimer.Restart();
+                            }
+                            else
+                            {
+                                extendTimer.Start();
+                                paddle.width += 40;
+                                paddle.x -= 20;
+                            }
+                            break;
+                    }
+                    //delete the powerBall
+                    powerList.Remove(p);
                     break;
                 }
+                // if powerBall goes offscreen, delete the ball
+                if (p.y > this.Height + 50)
+                {
+                    powerList.Remove(p);
+                    break;
+                }
+            }
+            //check if duration has run out for each powerup
+            if (4 < Convert.ToDouble(breakTimer.ElapsedMilliseconds / 1000))
+            {
+                breakTimer.Reset();
+            }
+            if (10 < Convert.ToDouble(extendTimer.ElapsedMilliseconds / 1000))
+            {
+                extendTimer.Reset();
+                paddle.width -= 40;
+                paddle.x += 20;
+            }
+            if (7 < Convert.ToDouble(gravityTimer.ElapsedMilliseconds / 1000))
+            {
+
             }
 
             //redraw the screen
@@ -187,7 +310,7 @@ namespace BrickBreaker
             // Goes to the game over screen
             Form form = this.FindForm();
             MenuScreen ps = new MenuScreen();
-            
+
             ps.Location = new Point((form.Width - ps.Width) / 2, (form.Height - ps.Height) / 2);
 
             form.Controls.Add(ps);
@@ -205,9 +328,35 @@ namespace BrickBreaker
             {
                 e.Graphics.FillRectangle(blockBrush, b.x, b.y, b.width, b.height);
             }
+            // Draws powerups
+            foreach (Powers p in powerList)
+            {
+                switch (p.type)
+                {
+                    case "Breakthrough":
+                        e.Graphics.FillRectangle(breakThrough, p.x, p.y, Powers.powerupSize, Powers.powerupSize);
+                        break;
+                    case "Gravity":
+                        e.Graphics.FillRectangle(gravity, p.x, p.y, Powers.powerupSize, Powers.powerupSize);
+                        break;
+                    case "Health":
+                        e.Graphics.FillRectangle(health, p.x, p.y, Powers.powerupSize, Powers.powerupSize);
+                        break;
+                    case "MultiBall":
+                        e.Graphics.FillRectangle(multiBall, p.x, p.y, Powers.powerupSize, Powers.powerupSize);
+                        break;
+                    case "ExtendPaddle":
+                        e.Graphics.FillRectangle(extendPaddle, p.x, p.y, Powers.powerupSize, Powers.powerupSize);
+                        break;
+                }
+            }
 
-            // Draws ball
-            e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
+            // Draws balls
+            foreach (Ball b in balls)
+            {
+                e.Graphics.FillRectangle(ballBrush, b.x, b.y, b.size, b.size);
+            }
+
         }
     }
 }
