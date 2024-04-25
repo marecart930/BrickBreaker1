@@ -20,7 +20,7 @@ namespace BrickBreaker
         #region global values
 
         //player1 button control keys - DO NOT CHANGE
-        Boolean leftArrowDown, rightArrowDown;
+        Boolean leftArrowDown, rightArrowDown, spaceDown;
 
         // Game values
         int lives;
@@ -54,14 +54,14 @@ namespace BrickBreaker
             List<Label> labels = new List<Label>();
 
             //set all button presses to false.
-            leftArrowDown = rightArrowDown = false;
+            leftArrowDown = rightArrowDown = spaceDown = false;
 
             // setup starting paddle values and create paddle object
             int paddleWidth = 80;
             int paddleHeight = 20;
             int paddleX = ((this.Width / 2) - (paddleWidth / 2));
             int paddleY = (this.Height - paddleHeight) - 60;
-            int paddleSpeed = 8;
+            int paddleSpeed = 7;
             paddle = new Paddle(paddleX, paddleY, paddleWidth, paddleHeight, paddleSpeed, Color.White);
 
             // setup starting ball values
@@ -69,8 +69,8 @@ namespace BrickBreaker
             int ballY = this.Height - paddle.height - 80;
 
             // Creates a new ball
-            int xSpeed = 6;
-            int ySpeed = 6;
+            int xSpeed = 8;
+            int ySpeed = 8;
             int ballSize = 20;
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
 
@@ -105,6 +105,9 @@ namespace BrickBreaker
                 case Keys.Right:
                     rightArrowDown = true;
                     break;
+                /*case Keys.Space:
+                    spaceDown = true;
+                    break;*/
                 default:
                     break;
             }
@@ -121,6 +124,9 @@ namespace BrickBreaker
                 case Keys.Right:
                     rightArrowDown = false;
                     break;
+                /*case Keys.Space:
+                    spaceDown = false;
+                    break;*/
                 default:
                     break;
             }
@@ -128,6 +134,16 @@ namespace BrickBreaker
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
+            /*//test code to slow game down
+            if (spaceDown)
+            {
+                gameTimer.Interval = 100;
+            }
+            else
+            {
+                gameTimer.Interval = 1;
+            }*/
+
             // Move the paddle
             if (leftArrowDown && paddle.x > 0)
             {
