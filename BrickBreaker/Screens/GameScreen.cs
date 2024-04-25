@@ -51,6 +51,8 @@ namespace BrickBreaker
             //set life counter
             lives = 3;
 
+            List<Label> labels = new List<Label>();
+
             //set all button presses to false.
             leftArrowDown = rightArrowDown = spaceDown = false;
 
