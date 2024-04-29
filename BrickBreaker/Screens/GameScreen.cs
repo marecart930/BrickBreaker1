@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
+using System.Xml;
 
 namespace BrickBreaker
 {
@@ -36,6 +37,8 @@ namespace BrickBreaker
         SolidBrush paddleBrush = new SolidBrush(Color.White);
         SolidBrush ballBrush = new SolidBrush(Color.White);
         SolidBrush blockBrush = new SolidBrush(Color.Red);
+        SolidBrush yellowBrush = new SolidBrush(Color.Yellow);
+        SolidBrush cyanBrush = new SolidBrush(Color.Cyan);
 
         #endregion
 
@@ -53,6 +56,9 @@ namespace BrickBreaker
 
             //set all button presses to false.
             leftArrowDown = rightArrowDown = false;
+
+            //clear blocks list
+            blocks.Clear();
 
             // setup starting paddle values and create paddle object
             int paddleWidth = 80;
@@ -73,20 +79,43 @@ namespace BrickBreaker
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
 
             #region Creates blocks for generic level. Need to replace with code that loads levels.
-            
-            //TODO - replace all the code in this region eventually with code that loads levels from xml files
-            
-            blocks.Clear();
-            int x = 10;
 
-            while (blocks.Count < 12)
-            {
-                x += 57;
-                Block b1 = new Block(x, 10, 1, Color.White);
-                blocks.Add(b1);
-            }
+            //TODO - replace all the code in this region eventually with code that loads levels from xml file
+
+            // blocks.Clear();
+            //int x = 10;
+
+            //while (blocks.Count < 12)
+            // {
+            //    x += 57;
+            //    Block b1 = new Block(x, 10, 1, Color.White);
+            //    blocks.Add(b1);
+            //}
 
             #endregion
+
+            XmlReader reader = XmlReader.Create("Resources/secLevel.xml");
+
+            while (reader.Read())
+            {
+                if (reader.NodeType == XmlNodeType.Text)
+                {
+                    Block b;
+                    int x = Convert.ToInt32(reader.ReadString());
+                    reader.ReadToFollowing("y");
+                    int y = Convert.ToInt32(reader.ReadString());
+                    reader.ReadToFollowing("hp");
+                    int hp = Convert.ToInt32(reader.ReadString());
+                    reader.ReadToFollowing("colour");
+                    string color = reader.ReadString();
+                    b = new Block(x, y, hp);
+
+                    blocks.Add(b);
+                }
+                
+            }
+
+            reader.Close();
 
             // start the game engine loop
             gameTimer.Enabled = true;
@@ -166,15 +195,22 @@ namespace BrickBreaker
             {
                 if (ball.BlockCollision(b))
                 {
-                    blocks.Remove(b);
+                    b.hp--;
 
-                    if (blocks.Count == 0)
+                    if (b.hp == 0)
                     {
-                        gameTimer.Enabled = false;
-                        OnEnd();
-                    }
+                        blocks.Remove(b);
 
-                    break;
+                        if (blocks.Count == 0)
+                        {
+                            gameTimer.Enabled = false;
+                            OnEnd();
+
+                            break;
+                        }
+
+                        break;
+                    }
                 }
             }
 
@@ -203,7 +239,18 @@ namespace BrickBreaker
             // Draws blocks
             foreach (Block b in blocks)
             {
-                e.Graphics.FillRectangle(blockBrush, b.x, b.y, b.width, b.height);
+                if (b.hp == 1)
+                {
+                    e.Graphics.FillRectangle(blockBrush, b.x, b.y, b.width, b.height);
+                }
+                else if (b.hp == 2)
+                {
+                    e.Graphics.FillRectangle(yellowBrush, b.x, b.y, b.width, b.height);
+                }
+                if (b.hp == 3)
+                {
+                    e.Graphics.FillRectangle(cyanBrush, b.x, b.y, b.width, b.height);
+                }
             }
 
             // Draws ball

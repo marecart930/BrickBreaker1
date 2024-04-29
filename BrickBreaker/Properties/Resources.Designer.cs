@@ -59,5 +59,93 @@ namespace BrickBreaker.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;level&gt;
+        ///	&lt;block&gt;
+        ///		&lt;x&gt;19&lt;/x&gt;
+        ///		&lt;y&gt;12&lt;/y&gt;
+        ///		&lt;hp&gt;1&lt;/hp&gt;
+        ///		&lt;colour&gt;Red&lt;/colour&gt;
+        ///	&lt;/block&gt;
+        ///	&lt;block&gt;
+        ///		&lt;x&gt;111&lt;/x&gt;
+        ///		&lt;y&gt;12&lt;/y&gt;
+        ///		&lt;hp&gt;1&lt;/hp&gt;
+        ///		&lt;colour&gt;Red&lt;/colour&gt;
+        ///	&lt;/block&gt;
+        ///	&lt;block&gt;
+        ///		&lt;x&gt;203&lt;/x&gt;
+        ///		&lt;y&gt;12&lt;/y&gt;
+        ///		&lt;hp&gt;1&lt;/hp&gt;
+        ///		&lt;colour&gt;Red&lt;/colour&gt;
+        ///	&lt;/block&gt;
+        ///	&lt;block&gt;
+        ///		&lt;x&gt;295&lt;/x&gt;
+        ///		&lt;y&gt;12&lt;/y&gt;
+        ///		&lt;hp&gt;1&lt;/hp&gt;
+        ///		&lt;colour&gt;Red&lt;/colour&gt;
+        ///	&lt;/block&gt;
+        ///	&lt;block&gt;
+        ///		&lt;x&gt;387&lt;/x&gt;
+        ///		&lt;y&gt;12&lt;/y&gt;
+        ///		&lt;hp&gt;1&lt;/hp&gt;
+        ///		&lt;colour&gt;Red&lt;/colour&gt;
+        ///	&lt;/block&gt;
+        ///	&lt;block&gt;
+        ///		&lt;x&gt;479&lt;/x&gt;
+        ///		&lt;y&gt;12&lt;/y&gt;
+        ///		&lt;hp&gt;1&lt;/hp&gt;
+        ///		&lt;colour&gt;Red&lt;/colour&gt;        /// [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string firstLevel {
+            get {
+                return ResourceManager.GetString("firstLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;level&gt;
+        ///	&lt;block&gt;
+        ///		&lt;x&gt;65&lt;/x&gt;
+        ///		&lt;y&gt;12&lt;/y&gt;
+        ///		&lt;hp&gt;1&lt;/hp&gt;
+        ///		&lt;colour&gt;Red&lt;/colour&gt;
+        ///	&lt;/block&gt;
+        ///	&lt;block&gt;
+        ///		&lt;x&gt;160&lt;/x&gt;
+        ///		&lt;y&gt;12&lt;/y&gt;
+        ///		&lt;hp&gt;1&lt;/hp&gt;
+        ///		&lt;colour&gt;Red&lt;/colour&gt;
+        ///	&lt;/block&gt;
+        ///	&lt;block&gt;
+        ///		&lt;x&gt;249&lt;/x&gt;
+        ///		&lt;y&gt;12&lt;/y&gt;
+        ///		&lt;hp&gt;1&lt;/hp&gt;
+        ///		&lt;colour&gt;Red&lt;/colour&gt;
+        ///	&lt;/block&gt;
+        ///	&lt;block&gt;
+        ///		&lt;x&gt;295&lt;/x&gt;
+        ///		&lt;y&gt;12&lt;/y&gt;
+        ///		&lt;hp&gt;1&lt;/hp&gt;
+        ///		&lt;colour&gt;Red&lt;/colour&gt;
+        ///	&lt;/block&gt;
+        ///	&lt;block&gt;
+        ///		&lt;x&gt;341&lt;/x&gt;
+        ///		&lt;y&gt;12&lt;/y&gt;
+        ///		&lt;hp&gt;1&lt;/hp&gt;
+        ///		&lt;colour&gt;Red&lt;/colour&gt;
+        ///	&lt;/block&gt;
+        ///	&lt;block&gt;
+        ///		&lt;x&gt;479&lt;/x&gt;
+        ///		&lt;y&gt;12&lt;/y&gt;
+        ///		&lt;hp&gt;1&lt;/hp&gt;
+        ///		&lt;colour&gt;Red&lt;/colour&gt;        /// [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string secLevel {
+            get {
+                return ResourceManager.GetString("secLevel", resourceCulture);
+            }
+        }
     }
 }
