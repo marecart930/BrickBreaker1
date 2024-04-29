@@ -143,6 +143,45 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\blocks A1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blocks B1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blocks C1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blocks D1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blocks E1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blocks empty1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RC-top1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\toy story ball down1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\toy story ball left1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\toy story ball right1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\toy story ball up1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RC-top left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RC-top right.png" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Resources\BrickBreakerLogo-removebg-preview.png" />
   </ItemGroup>
   <ItemGroup>

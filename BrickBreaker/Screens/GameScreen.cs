@@ -4,12 +4,8 @@
  */
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
 using System.Diagnostics;
@@ -59,12 +55,20 @@ namespace BrickBreaker
         public static Random r = new Random();
         #endregion
 
+        Rectangle rc_car = new Rectangle();
+
+        Image rccar = Properties.Resources.RC_top1;
+        Image ballig = Properties.Resources.toy_story_ball_down1;
+
+        Pen redbrush = new Pen(Color.Red);
+
+        Stopwatch ballwatch = new Stopwatch();
+
         public GameScreen()
         {
             InitializeComponent();
             OnStart();
         }
-
 
         public void OnStart()
         {
@@ -77,8 +81,9 @@ namespace BrickBreaker
             leftArrowDown = rightArrowDown = spaceDown = false;
 
             // setup starting paddle values and create paddle object
+
             int paddleWidth = 80;
-            int paddleHeight = 20;
+            int paddleHeight = 105;
             int paddleX = ((this.Width / 2) - (paddleWidth / 2));
             int paddleY = (this.Height - paddleHeight) - 60;
             int paddleSpeed = 7;
@@ -111,6 +116,12 @@ namespace BrickBreaker
 
             #endregion
 
+            rc_car.X = paddle.x;
+            rc_car.Y = paddle.y;
+            rc_car.Width = paddle.width;
+            rc_car.Height = paddle.height;
+
+
             // start the game engine loop
             gameTimer.Enabled = true;
         }
@@ -130,6 +141,9 @@ namespace BrickBreaker
                     spaceDown = true;
                     break;*/
                 default:
+                    break;
+                case Keys.Escape:
+                    Application.Exit();
                     break;
             }
         }
@@ -319,6 +333,25 @@ namespace BrickBreaker
 
             }
 
+            //ball animations
+            ballwatch.Start();
+            if (ballwatch.ElapsedMilliseconds >= 200)
+            {
+                ballig = Properties.Resources.toy_story_ball_down1;
+            }
+            if (ballwatch.ElapsedMilliseconds >= 400)
+            {
+                ballig = Properties.Resources.toy_story_ball_right1;
+            }
+            if (ballwatch.ElapsedMilliseconds >= 600)
+            {
+                ballig = Properties.Resources.toy_story_ball_up1;
+            }
+            if (ballwatch.ElapsedMilliseconds >= 1000)
+            {
+                ballig = Properties.Resources.toy_story_ball_left1;
+            }
+
             //redraw the screen
             Refresh();
         }
@@ -338,8 +371,28 @@ namespace BrickBreaker
         public void GameScreen_Paint(object sender, PaintEventArgs e)
         {
             // Draws paddle
-            paddleBrush.Color = paddle.colour;
-            e.Graphics.FillRectangle(paddleBrush, paddle.x, paddle.y, paddle.width, paddle.height);
+            //paddleBrush.Color = paddle.colour;
+
+            e.Graphics.DrawRectangle(redbrush, paddle.x, paddle.y, paddle.width, paddle.height);
+            if (leftArrowDown == true)
+            {
+                paddle.height = 80;
+                paddle.width = 105;
+                e.Graphics.DrawImage(Properties.Resources.RC_top_right, paddle.x, paddle.y, paddle.width, paddle.height);
+            }
+            else if (rightArrowDown == true)
+            {
+                paddle.height = 80;
+                paddle.width = 105;
+                e.Graphics.DrawImage(Properties.Resources.RC_top_left, paddle.x, paddle.y, paddle.width, paddle.height);
+            }
+            else
+            {
+                paddle.height = 105;
+                paddle.width = 80;
+                e.Graphics.DrawImage(rccar, paddle.x, paddle.y, paddle.width, paddle.height);
+
+            }
 
             // Draws blocks
             foreach (Block b in blocks)
@@ -374,6 +427,9 @@ namespace BrickBreaker
             {
                 e.Graphics.FillRectangle(ballBrush, b.x, b.y, b.size, b.size);
             }
+
+            // Draws ball
+                e.Graphics.DrawImage(ballig, ball.x, ball.y, ball.size, ball.size);
 
         }
     }
