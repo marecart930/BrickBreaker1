@@ -12,6 +12,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
+using System.Diagnostics;
+using System.Windows.Forms.Automation;
 
 namespace BrickBreaker
 {
@@ -23,7 +25,7 @@ namespace BrickBreaker
         Boolean leftArrowDown, rightArrowDown, spaceDown;
 
         // Game values
-        int lives;
+        int lives, counter, extraSpeed;
 
         // Paddle and Ball objects
         Paddle paddle;
@@ -50,6 +52,7 @@ namespace BrickBreaker
         {
             //set life counter
             lives = 3;
+            counter = extraSpeed = 0;
 
             List<Label> labels = new List<Label>();
 
@@ -105,9 +108,9 @@ namespace BrickBreaker
                 case Keys.Right:
                     rightArrowDown = true;
                     break;
-                /*case Keys.Space:
+                case Keys.Space:
                     spaceDown = true;
-                    break;*/
+                    break;
                 default:
                     break;
             }
@@ -124,9 +127,9 @@ namespace BrickBreaker
                 case Keys.Right:
                     rightArrowDown = false;
                     break;
-                /*case Keys.Space:
+                case Keys.Space:
                     spaceDown = false;
-                    break;*/
+                    break;
                 default:
                     break;
             }
@@ -134,7 +137,7 @@ namespace BrickBreaker
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
-            /*//test code to slow game down
+            //test code to slow game down (will be removed for final game)
             if (spaceDown)
             {
                 gameTimer.Interval = 100;
@@ -142,7 +145,7 @@ namespace BrickBreaker
             else
             {
                 gameTimer.Interval = 1;
-            }*/
+            }
 
             // Move the paddle
             if (leftArrowDown && paddle.x > 0)
@@ -177,7 +180,7 @@ namespace BrickBreaker
             }
 
             // Check for collision of ball with paddle, (incl. paddle movement)
-            ball.PaddleCollision(paddle);
+            ball.PaddleCollision(paddle, extraSpeed);
 
             // Check if ball has collided with any blocks
             foreach (Block b in blocks)
@@ -193,6 +196,28 @@ namespace BrickBreaker
                     }
 
                     break;
+                }
+            }
+
+            //speeding up the ball every 5 seconds
+            counter++;
+            if (counter % 5000 == 0)
+            {
+                extraSpeed++;
+            }
+            
+            if (counter % 100 == 0)
+            {
+                foreach (Block b in blocks)
+                {
+                    b.y += 10;
+                    if (b.y >= paddle.y)
+                    {
+                        gameTimer.Enabled = false;
+                        OnEnd();
+
+                        break;
+                    }
                 }
             }
 
