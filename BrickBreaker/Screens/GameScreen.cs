@@ -40,6 +40,9 @@ namespace BrickBreaker
         Stopwatch gravityTimer = new Stopwatch();
         Stopwatch extendTimer = new Stopwatch();
 
+        public static bool breakthroughBool;
+        public static bool gravityBool;
+
         // list of all blocks for current level
         List<Block> blocks = new List<Block>();
 
@@ -92,6 +95,7 @@ namespace BrickBreaker
             int xSpeed = 8;
             int ySpeed = 8;
             int ballSize = 20;
+            
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
             balls.Add(ball);
 
@@ -192,7 +196,7 @@ namespace BrickBreaker
             // Check for ball hitting bottom of screen
             for (int i = 0; i < balls.Count; i++)
             {
-                if (ball.BottomCollision(this))
+                if (balls[i].BottomCollision(this))
                 {
                     balls.RemoveAt(i);
 
@@ -202,8 +206,8 @@ namespace BrickBreaker
 
                         // Moves the ball back to origin
                         balls.Add(ball);
-                        ball.x = ((paddle.x - (ball.size / 2)) + (paddle.width / 2));
-                        ball.y = (this.Height - paddle.height) - 85;
+                        balls[i].x = ((paddle.x - (ball.size / 2)) + (paddle.width / 2));
+                        balls[i].y = (this.Height - paddle.height) - 85;
                     }
 
                     if (lives == 0)
@@ -227,7 +231,7 @@ namespace BrickBreaker
                     if (balls[i].BlockCollision(b))
                     {
                         //random chance to spawn a powerup
-                        if (r.Next(1, 5) == 1)
+                        if (r.Next(1, 2) == 1)
                         {
                             Powers power = new Powers(b.x + (b.width / 2), b.y + (b.height / 2), "");
                             powerList.Add(power);
@@ -260,11 +264,29 @@ namespace BrickBreaker
                     {
                         case "Breakthrough":
                             //unstoppable ball for duration of time
-
+                            if (breakTimer.IsRunning == true)
+                            {
+                                breakTimer.Restart();
+                            }
+                            else
+                            {
+                                breakTimer.Start();
+                                breakthroughBool = true;
+                                ballBrush.Color = Color.LightBlue;
+                            }
                             break;
                         case "Gravity":
                             //arc balls back upwards 
-
+                            if (gravityTimer.IsRunning == true)
+                            {
+                               gravityTimer.Restart();
+                            }
+                            else
+                            {
+                                gravityTimer.Start();
+                                gravityBool = true;
+                                ballBrush.Color = Color.LightPink;
+                            }
                             break;
                         case "Health":
                             //grants the player an extra life, capped at 5 lives
@@ -304,19 +326,28 @@ namespace BrickBreaker
                 }
             }
             //check if duration has run out for each powerup
+            
             if (4 < Convert.ToDouble(breakTimer.ElapsedMilliseconds / 1000))
             {
                 breakTimer.Reset();
+                ballBrush.Color = Color.White;
+                breakthroughBool = false;
             }
+            //extend powerup
+            
             if (10 < Convert.ToDouble(extendTimer.ElapsedMilliseconds / 1000))
             {
                 extendTimer.Reset();
                 paddle.width -= 40;
                 paddle.x += 20;
             }
+            //gravity powerup
+
             if (7 < Convert.ToDouble(gravityTimer.ElapsedMilliseconds / 1000))
             {
-
+                gravityTimer.Reset();
+                gravityBool = false;
+                ballBrush.Color = Color.White;
             }
 
             //redraw the screen
@@ -325,6 +356,12 @@ namespace BrickBreaker
 
         public void OnEnd()
         {
+            breakTimer.Reset();
+            gravityTimer.Reset();
+            extendTimer.Reset();
+            gravityBool = false;
+            breakthroughBool = false;
+
             // Goes to the game over screen
             Form form = this.FindForm();
             MenuScreen ps = new MenuScreen();
