@@ -112,19 +112,8 @@ namespace BrickBreaker
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
             balls.Add(ball);
 
-            //TODO - replace all the code in this region eventually with code that loads levels from xml file
 
-            // blocks.Clear();
-            //int x = 10;
 
-            //while (blocks.Count < 12)
-            // {
-            //    x += 57;
-            //    Block b1 = new Block(x, 10, 1, Color.White);
-            //    blocks.Add(b1);
-            //}
-
-            #endregion
 
             XmlReader reader = XmlReader.Create("Resources/secLevel.xml");
 
@@ -273,13 +262,18 @@ namespace BrickBreaker
                 {
                     if (balls[i].BlockCollision(b))
                     {
+                        b.hp--;
+
                         //random chance to spawn a powerup
                         if (r.Next(1, 2) == 1)
                         {
                             Powers power = new Powers(b.x + (b.width / 2), b.y + (b.height / 2), "");
                             powerList.Add(power);
                         }
-                        blocks.Remove(b);
+                        if(b.hp == 0)
+                        {
+                            blocks.Remove(b);
+                        }
 
                         if (blocks.Count == 0)
                         {
