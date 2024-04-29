@@ -2,6 +2,7 @@
 using System.CodeDom;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Xml.XPath;
 
 namespace BrickBreaker
 {
@@ -24,10 +25,18 @@ namespace BrickBreaker
 
         public void Move()
         {
+
             x = x + xSpeed;
             y = y + ySpeed;
-        }
 
+            if (y > 350 && ySpeed > 0 && GameScreen.gravityBool)
+            {
+                y -= (ySpeed / 2);
+                ySpeed *= -1;
+                y--;
+            }
+           
+        }
         public bool BlockCollision(Block b)
         {
             //creating temporary rectangles
@@ -40,16 +49,30 @@ namespace BrickBreaker
             if (ballRec.IntersectsWith(blockRecMiddle))
             {
                 ySpeed *= -1;
+
+                if (GameScreen.breakthroughBool == false)
+                {
+                    xSpeed *= -1;
+                }
                 return true;
             }
             else if (ballRec.IntersectsWith(blockRecLeft) && xSpeed > 0)
             {
-                xSpeed *= -1;
+                if (GameScreen.breakthroughBool == false)
+                {
+                    xSpeed *= -1;
+                }
+
                 return true;
             }
             else if (ballRec.IntersectsWith(blockRecRight) && xSpeed < 0)
             {
                 xSpeed *= -1;
+                if (GameScreen.breakthroughBool == false)
+                {
+                    ySpeed *= -1;
+                }
+
                 return true;
             }
 
