@@ -38,10 +38,10 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.BackgroundImage = global::BrickBreaker.Properties.Resources.YOU_DIED_4_25_2024_removebg_preview;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox1.Location = new System.Drawing.Point(90, 31);
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Location = new System.Drawing.Point(158, 49);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(691, 380);
+            this.pictureBox1.Size = new System.Drawing.Size(550, 342);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -52,7 +52,7 @@
             this.exitButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.exitButton.Font = new System.Drawing.Font("Showcard Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exitButton.ForeColor = System.Drawing.Color.Gold;
-            this.exitButton.Location = new System.Drawing.Point(514, 417);
+            this.exitButton.Location = new System.Drawing.Point(514, 374);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(194, 77);
             this.exitButton.TabIndex = 3;
@@ -68,7 +68,7 @@
             this.playButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.playButton.Font = new System.Drawing.Font("Showcard Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.playButton.ForeColor = System.Drawing.Color.Gold;
-            this.playButton.Location = new System.Drawing.Point(158, 417);
+            this.playButton.Location = new System.Drawing.Point(158, 374);
             this.playButton.Name = "playButton";
             this.playButton.Size = new System.Drawing.Size(194, 77);
             this.playButton.TabIndex = 2;
