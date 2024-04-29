@@ -425,12 +425,8 @@ namespace BrickBreaker
             // Draws balls
             foreach (Ball b in balls)
             {
-                e.Graphics.FillRectangle(ballBrush, b.x, b.y, b.size, b.size);
+                e.Graphics.DrawImage(ballig, b.x, b.y, b.size, b.size);
             }
-
-            // Draws ball
-                e.Graphics.DrawImage(ballig, ball.x, ball.y, ball.size, ball.size);
-
         }
     }
 }
