@@ -67,6 +67,12 @@ namespace BrickBreaker.Properties {
             get {
                 object obj = ResourceManager.GetObject("blocks A1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+}
+}
+        internal static System.Drawing.Bitmap BrickBreakerLogo_removebg_preview__2_ {
+            get {
+                object obj = ResourceManager.GetObject("BrickBreakerLogo_removebg_preview__2_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -76,6 +82,13 @@ namespace BrickBreaker.Properties {
         internal static System.Drawing.Bitmap blocks_B1 {
             get {
                 object obj = ResourceManager.GetObject("blocks B1", resourceCulture);
+                                return ((System.Drawing.Bitmap)(obj));
+}
+}
+
+        internal static System.Drawing.Bitmap wall {
+            get {
+                object obj = ResourceManager.GetObject("wall", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -86,6 +99,13 @@ namespace BrickBreaker.Properties {
         internal static System.Drawing.Bitmap blocks_C1 {
             get {
                 object obj = ResourceManager.GetObject("blocks C1", resourceCulture);
+                                return ((System.Drawing.Bitmap)(obj));
+                    }
+        }
+
+        internal static System.Drawing.Bitmap YOU_DIED_4_25_2024_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("YOU_DIED_4_25_2024_removebg_preview", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -186,6 +206,13 @@ namespace BrickBreaker.Properties {
         internal static System.Drawing.Bitmap toy_story_ball_up1 {
             get {
                 object obj = ResourceManager.GetObject("toy story ball up1", resourceCulture);
+                                return ((System.Drawing.Bitmap)(obj));
+}
+}
+
+        internal static System.Drawing.Bitmap YOU_WIN_4_25_2024_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("YOU_WIN_4_25_2024_removebg_preview", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
