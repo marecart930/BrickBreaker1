@@ -40,13 +40,23 @@ namespace BrickBreaker
         public bool BlockCollision(Block b)
         {
             //creating temporary rectangles
-            Rectangle blockRecLeft = new Rectangle(b.x, b.y + 1, 2, b.height);
-            Rectangle blockRecRight = new Rectangle(b.x + b.width - 1, b.y + 1, 2, b.height);
-            Rectangle blockRecMiddle = new Rectangle(b.x + 1, b.y, b.width - 1, b.height + 2);
+            Rectangle blockRecLeft = new Rectangle(b.x + 1, b.y, 2, b.height); //amoguss //blow up more
+            Rectangle blockRecRight = new Rectangle(b.x + b.width - 1, b.y, 2, b.height);
+            Rectangle blockRecMiddle = new Rectangle(b.x -1, b.y - 1, b.width - 2, b.height + 2);
             Rectangle ballRec = new Rectangle(x, y, size, size);
 
             //checking for intersection with each part of the blocks
-            if (ballRec.IntersectsWith(blockRecLeft) && xSpeed > 0)
+            if (ballRec.IntersectsWith(blockRecMiddle))
+            {
+                ySpeed *= -1;
+
+                if (GameScreen.breakthroughBool == false)
+                {
+                    xSpeed *= -1;
+                }
+                return true;
+            }
+            else if (ballRec.IntersectsWith(blockRecLeft) && xSpeed > 0)
             {
                 if (GameScreen.breakthroughBool == false)
                 {
@@ -57,15 +67,7 @@ namespace BrickBreaker
             }
             else if (ballRec.IntersectsWith(blockRecRight) && xSpeed < 0)
             {
-                if (GameScreen.breakthroughBool == false)
-                {
-                    xSpeed *= -1;
-                }
-
-                return true;
-            }
-            else if (ballRec.IntersectsWith(blockRecMiddle))
-            {
+                xSpeed *= -1;
                 if (GameScreen.breakthroughBool == false)
                 {
                     ySpeed *= -1;
@@ -78,7 +80,7 @@ namespace BrickBreaker
             return false;
         }
 
-        public void PaddleCollision(Paddle p)
+        public void PaddleCollision(Paddle p, int extraSpeed)
         {
             //creating temporary rectangles
             Rectangle blockRecLeft = new Rectangle(p.x, p.y + 1, 2, p.height);
@@ -99,26 +101,26 @@ namespace BrickBreaker
                 {
                     if (xSpeed < 0)
                     {
-                        xSpeed = -11;
-                        ySpeed = -7;
+                        xSpeed = -9 - extraSpeed;
+                        ySpeed = -5 - extraSpeed;
                     }
                     else
                     {
-                        xSpeed = 11;
-                        ySpeed = -7;
+                        xSpeed = 9 + extraSpeed;
+                        ySpeed = -5 - extraSpeed;
                     }
                 }
                 else if (collisonPoint > 5 && collisonPoint < 55)
                 {
                     if (xSpeed < 0)
                     {
-                        xSpeed = -10;
-                        ySpeed = -8;
+                        xSpeed = -8 - extraSpeed;
+                        ySpeed = -6 - extraSpeed;
                     }
                     else
                     {
-                        xSpeed = 10;
-                        ySpeed = -8;
+                        xSpeed = 8 + extraSpeed;
+                        ySpeed = -6 - extraSpeed;
                     }
                 }
             }

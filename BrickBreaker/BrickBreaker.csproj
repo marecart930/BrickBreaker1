@@ -76,6 +76,17 @@
     <Compile Include="Powerups.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\EndScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Screens\EndScreen.Designer.cs">
+      <DependentUpon>EndScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Screens\MenuScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -93,14 +104,17 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Screens\EndScreen.resx">
+      <DependentUpon>EndScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Screens\MenuScreen.resx">
       <DependentUpon>MenuScreen.cs</DependentUpon>
     </EmbeddedResource>
@@ -134,7 +148,86 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <Folder Include="bin\Debug\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\firstLevel.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\secLevel.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blocks A1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blocks B1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blocks C1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blocks D1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blocks E1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blocks empty1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RC-top1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\toy story ball down1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\toy story ball left1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\toy story ball right1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\toy story ball up1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RC-top left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RC-top right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BrickBreakerLogo-removebg-preview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BrickBreakerLogo.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BrickBreakerLogo %281%29.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BrickBreakerLogo-removebg-preview %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BrickBreakerLogo-removebg-preview %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\YOU-WIN-4-25-2024.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\YOU-DIED-4-25-2024.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\YOU-WIN-4-25-2024-removebg-preview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\YOU-DIED-4-25-2024-removebg-preview.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
