@@ -47,6 +47,96 @@ namespace BrickBreaker.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;level&gt;
+        ///	&lt;block&gt;
+        ///		&lt;x&gt;19&lt;/x&gt;
+        ///		&lt;y&gt;12&lt;/y&gt;
+        ///		&lt;hp&gt;1&lt;/hp&gt;
+        ///		&lt;colour&gt;Red&lt;/colour&gt;
+        ///	&lt;/block&gt;
+        ///	&lt;block&gt;
+        ///		&lt;x&gt;111&lt;/x&gt;
+        ///		&lt;y&gt;12&lt;/y&gt;
+        ///		&lt;hp&gt;1&lt;/hp&gt;
+        ///		&lt;colour&gt;Red&lt;/colour&gt;
+        ///	&lt;/block&gt;
+        ///	&lt;block&gt;
+        ///		&lt;x&gt;203&lt;/x&gt;
+        ///		&lt;y&gt;12&lt;/y&gt;
+        ///		&lt;hp&gt;1&lt;/hp&gt;
+        ///		&lt;colour&gt;Red&lt;/colour&gt;
+        ///	&lt;/block&gt;
+        ///	&lt;block&gt;
+        ///		&lt;x&gt;295&lt;/x&gt;
+        ///		&lt;y&gt;12&lt;/y&gt;
+        ///		&lt;hp&gt;1&lt;/hp&gt;
+        ///		&lt;colour&gt;Red&lt;/colour&gt;
+        ///	&lt;/block&gt;
+        ///	&lt;block&gt;
+        ///		&lt;x&gt;387&lt;/x&gt;
+        ///		&lt;y&gt;12&lt;/y&gt;
+        ///		&lt;hp&gt;1&lt;/hp&gt;
+        ///		&lt;colour&gt;Red&lt;/colour&gt;
+        ///	&lt;/block&gt;
+        ///	&lt;block&gt;
+        ///		&lt;x&gt;479&lt;/x&gt;
+        ///		&lt;y&gt;12&lt;/y&gt;
+        ///		&lt;hp&gt;1&lt;/hp&gt;
+        ///		&lt;colour&gt;Red&lt;/colour&gt;
+        /// [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string firstLevel {
+            get {
+                return ResourceManager.GetString("firstLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;level&gt;
+        ///	&lt;block&gt;
+        ///		&lt;x&gt;65&lt;/x&gt;
+        ///		&lt;y&gt;12&lt;/y&gt;
+        ///		&lt;hp&gt;1&lt;/hp&gt;
+        ///		&lt;colour&gt;Red&lt;/colour&gt;
+        ///	&lt;/block&gt;
+        ///	&lt;block&gt;
+        ///		&lt;x&gt;160&lt;/x&gt;
+        ///		&lt;y&gt;12&lt;/y&gt;
+        ///		&lt;hp&gt;1&lt;/hp&gt;
+        ///		&lt;colour&gt;Red&lt;/colour&gt;
+        ///	&lt;/block&gt;
+        ///	&lt;block&gt;
+        ///		&lt;x&gt;249&lt;/x&gt;
+        ///		&lt;y&gt;12&lt;/y&gt;
+        ///		&lt;hp&gt;1&lt;/hp&gt;
+        ///		&lt;colour&gt;Red&lt;/colour&gt;
+        ///	&lt;/block&gt;
+        ///	&lt;block&gt;
+        ///		&lt;x&gt;295&lt;/x&gt;
+        ///		&lt;y&gt;12&lt;/y&gt;
+        ///		&lt;hp&gt;1&lt;/hp&gt;
+        ///		&lt;colour&gt;Red&lt;/colour&gt;
+        ///	&lt;/block&gt;
+        ///	&lt;block&gt;
+        ///		&lt;x&gt;341&lt;/x&gt;
+        ///		&lt;y&gt;12&lt;/y&gt;
+        ///		&lt;hp&gt;1&lt;/hp&gt;
+        ///		&lt;colour&gt;Red&lt;/colour&gt;
+        ///	&lt;/block&gt;
+        ///	&lt;block&gt;
+        ///		&lt;x&gt;479&lt;/x&gt;
+        ///		&lt;y&gt;12&lt;/y&gt;
+        ///		&lt;hp&gt;1&lt;/hp&gt;
+        ///		&lt;colour&gt;Red&lt;/colour&gt;
+        /// [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string secLevel {
+            get {
+                return ResourceManager.GetString("secLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
@@ -63,6 +153,12 @@ namespace BrickBreaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap blocks_A1 {
+            get {
+                object obj = ResourceManager.GetObject("blocks A1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+}
+}
         internal static System.Drawing.Bitmap BrickBreakerLogo_removebg_preview__2_ {
             get {
                 object obj = ResourceManager.GetObject("BrickBreakerLogo_removebg_preview__2_", resourceCulture);
@@ -73,6 +169,13 @@ namespace BrickBreaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap blocks_B1 {
+            get {
+                object obj = ResourceManager.GetObject("blocks B1", resourceCulture);
+                                return ((System.Drawing.Bitmap)(obj));
+}
+}
+
         internal static System.Drawing.Bitmap wall {
             get {
                 object obj = ResourceManager.GetObject("wall", resourceCulture);
@@ -83,6 +186,13 @@ namespace BrickBreaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap blocks_C1 {
+            get {
+                object obj = ResourceManager.GetObject("blocks C1", resourceCulture);
+                                return ((System.Drawing.Bitmap)(obj));
+                    }
+        }
+
         internal static System.Drawing.Bitmap YOU_DIED_4_25_2024_removebg_preview {
             get {
                 object obj = ResourceManager.GetObject("YOU_DIED_4_25_2024_removebg_preview", resourceCulture);
@@ -93,6 +203,103 @@ namespace BrickBreaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap blocks_D1 {
+            get {
+                object obj = ResourceManager.GetObject("blocks D1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap blocks_E1 {
+            get {
+                object obj = ResourceManager.GetObject("blocks E1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap blocks_empty1 {
+            get {
+                object obj = ResourceManager.GetObject("blocks empty1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RC_top_left {
+            get {
+                object obj = ResourceManager.GetObject("RC_top_left", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RC_top_right {
+            get {
+                object obj = ResourceManager.GetObject("RC_top_right", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RC_top1 {
+            get {
+                object obj = ResourceManager.GetObject("RC-top1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap toy_story_ball_down1 {
+            get {
+                object obj = ResourceManager.GetObject("toy story ball down1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap toy_story_ball_left1 {
+            get {
+                object obj = ResourceManager.GetObject("toy story ball left1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap toy_story_ball_right1 {
+            get {
+                object obj = ResourceManager.GetObject("toy story ball right1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap toy_story_ball_up1 {
+            get {
+                object obj = ResourceManager.GetObject("toy story ball up1", resourceCulture);
+                                return ((System.Drawing.Bitmap)(obj));
+}
+}
+
         internal static System.Drawing.Bitmap YOU_WIN_4_25_2024_removebg_preview {
             get {
                 object obj = ResourceManager.GetObject("YOU_WIN_4_25_2024_removebg_preview", resourceCulture);
