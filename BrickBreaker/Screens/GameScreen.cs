@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Media;
+using System.Xml;
 using System.Diagnostics;
 using System.Windows.Forms.Automation;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
@@ -47,6 +48,8 @@ namespace BrickBreaker
         SolidBrush paddleBrush = new SolidBrush(Color.White);
         SolidBrush ballBrush = new SolidBrush(Color.White);
         SolidBrush blockBrush = new SolidBrush(Color.Red);
+        SolidBrush yellowBrush = new SolidBrush(Color.Yellow);
+        SolidBrush cyanBrush = new SolidBrush(Color.Cyan);
 
         //placeholder brushes for testing powerups
         SolidBrush breakThrough = new SolidBrush(Color.White);
@@ -85,6 +88,9 @@ namespace BrickBreaker
             //set all button presses to false.
             leftArrowDown = rightArrowDown = spaceDown = false;
 
+            //clear blocks list
+            blocks.Clear();
+
             // setup starting paddle values and create paddle object
 
             int paddleWidth = 80;
@@ -106,21 +112,31 @@ namespace BrickBreaker
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
             balls.Add(ball);
 
-            #region Creates blocks for generic level. Need to replace with code that loads levels.
 
-            //TODO - replace all the code in this region eventually with code that loads levels from xml files
 
-            blocks.Clear();
-            int x = 10;
 
-            while (blocks.Count < 12)
+            XmlReader reader = XmlReader.Create("Resources/firstLevel.xml");
+
+            while (reader.Read())
             {
-                x += 57;
-                Block b1 = new Block(x, 10, 1, Color.White);
-                blocks.Add(b1);
+                if (reader.NodeType == XmlNodeType.Text)
+                {
+                    Block b;
+                    int x = Convert.ToInt32(reader.ReadString());
+                    reader.ReadToFollowing("y");
+                    int y = Convert.ToInt32(reader.ReadString());
+                    reader.ReadToFollowing("hp");
+                    int hp = Convert.ToInt32(reader.ReadString());
+                    reader.ReadToFollowing("colour");
+                    string color = reader.ReadString();
+                    b = new Block(x, y, hp);
+
+                    blocks.Add(b);
+                }
+                
             }
 
-            #endregion
+            reader.Close();
 
             rc_car.X = paddle.x;
             rc_car.Y = paddle.y;
@@ -246,13 +262,18 @@ namespace BrickBreaker
                 {
                     if (balls[i].BlockCollision(b))
                     {
+                        b.hp--;
+
                         //random chance to spawn a powerup
                         if (r.Next(1, 2) == 1)
                         {
                             Powers power = new Powers(b.x + (b.width / 2), b.y + (b.height / 2), "");
                             powerList.Add(power);
                         }
-                        blocks.Remove(b);
+                        if(b.hp == 0)
+                        {
+                            blocks.Remove(b);
+                        }
 
                         if (blocks.Count == 0)
                         {
@@ -401,7 +422,6 @@ namespace BrickBreaker
                     {
                         gameTimer.Enabled = false;
                         OnEnd();
-
                         break;
                     }
                 }
@@ -458,7 +478,18 @@ namespace BrickBreaker
             // Draws blocks
             foreach (Block b in blocks)
             {
-                e.Graphics.FillRectangle(blockBrush, b.x, b.y, b.width, b.height);
+                if (b.hp == 1)
+                {
+                    e.Graphics.FillRectangle(blockBrush, b.x, b.y, b.width, b.height);
+                }
+                else if (b.hp == 2)
+                {
+                    e.Graphics.FillRectangle(yellowBrush, b.x, b.y, b.width, b.height);
+                }
+                if (b.hp == 3)
+                {
+                    e.Graphics.FillRectangle(cyanBrush, b.x, b.y, b.width, b.height);
+                }
             }
             // Draws powerups
             foreach (Powers p in powerList)
