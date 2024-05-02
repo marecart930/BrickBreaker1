@@ -8,12 +8,13 @@ namespace BrickBreaker
 {
     public class Ball
     {
-        public int x, y, xSpeed, ySpeed, size;
+        public int x, xSpeed, size;
+        public double ySpeed, y;
         public Color colour;
 
         public static Random rand = new Random();
 
-        public Ball(int _x, int _y, int _xSpeed, int _ySpeed, int _ballSize)
+        public Ball(int _x, double _y, int _xSpeed, double _ySpeed, int _ballSize)
         {
             x = _x;
             y = _y;
@@ -28,22 +29,27 @@ namespace BrickBreaker
 
             x = x + xSpeed;
             y = y + ySpeed;
+            /*
+                        if (y > (GameScreen.height/2) && ySpeed > 0 && GameScreen.gravityBool)
+                        {
+                            y -= (ySpeed / 2);
+                            ySpeed *= -1;
 
-            if (y > 350 && ySpeed > 0 && GameScreen.gravityBool)
+                        }
+            */
+            if (GameScreen.gravityBool == true)
             {
-                y -= (ySpeed / 2);
-                ySpeed *= -1;
-                y--;
+                ySpeed -= .2;
             }
-           
+
         }
         public bool BlockCollision(Block b)
         {
             //creating temporary rectangles
             Rectangle blockRecLeft = new Rectangle(b.x + 1, b.y, 2, b.height); //amoguss //blow up more
             Rectangle blockRecRight = new Rectangle(b.x + b.width - 1, b.y, 2, b.height);
-            Rectangle blockRecMiddle = new Rectangle(b.x -1, b.y - 1, b.width - 2, b.height + 2);
-            Rectangle ballRec = new Rectangle(x, y, size, size);
+            Rectangle blockRecMiddle = new Rectangle(b.x - 1, b.y - 1, b.width - 2, b.height + 2);
+            Rectangle ballRec = new Rectangle(x, Convert.ToInt32(y), size, size);
 
             //checking for intersection with each part of the blocks
             if (ballRec.IntersectsWith(blockRecMiddle))
@@ -86,7 +92,7 @@ namespace BrickBreaker
             Rectangle blockRecLeft = new Rectangle(p.x, p.y + 1, 2, p.height);
             Rectangle blockRecRight = new Rectangle(p.x + p.width - 1, p.y + 1, 2, p.height);
             Rectangle blockRecMiddle = new Rectangle(p.x + 1, p.y, p.width - 1, p.height + 2);
-            Rectangle ballRec = new Rectangle(x, y, size, size);
+            Rectangle ballRec = new Rectangle(x, Convert.ToInt32(y), size, size);
 
             int collisonPoint = 0;
 
