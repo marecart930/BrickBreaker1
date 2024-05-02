@@ -34,7 +34,7 @@ namespace BrickBreaker
             this.x = x;
             this.y = y;
             //determine type of powerup by random chance, then saving the value
-            switch (GameScreen.r.Next(1, 6))
+            switch (GameScreen.r.Next(2, 3))
             {
                 case 1:
                     type = "Breakthrough";
