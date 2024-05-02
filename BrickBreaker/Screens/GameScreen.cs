@@ -550,9 +550,13 @@ namespace BrickBreaker
                 {
                     e.Graphics.FillRectangle(yellowBrush, b.x, b.y, b.width, b.height);
                 }
-                if (b.hp == 3)
+                else if (b.hp == 3)
                 {
                     e.Graphics.FillRectangle(cyanBrush, b.x, b.y, b.width, b.height);
+                }
+                else
+                {
+                    e.Graphics.FillRectangle(new SolidBrush(Color.Gray), b.x, b.y, b.width, b.height);
                 }
             }
             // Draws powerups
