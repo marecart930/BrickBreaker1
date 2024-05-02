@@ -1,0 +1,206 @@
+﻿<level>
+	<block>
+		<x>615</x>
+		<y>58</y>
+		<hp>5</hp>
+		<colour>Color [White]</colour>
+	</block>
+	<block>
+		<x>517</x>
+		<y>9</y>
+		<hp>5</hp>
+		<colour>Color [PaleTurquoise]</colour>
+	</block>
+	<block>
+		<x>459</x>
+		<y>9</y>
+		<hp>5</hp>
+		<colour>Color [PaleTurquoise]</colour>
+	</block>
+	<block>
+		<x>367</x>
+		<y>9</y>
+		<hp>5</hp>
+		<colour>Color [PaleTurquoise]</colour>
+	</block>
+	<block>
+		<x>293</x>
+		<y>9</y>
+		<hp>5</hp>
+		<colour>Color [PaleTurquoise]</colour>
+	</block>
+	<block>
+		<x>223</x>
+		<y>9</y>
+		<hp>5</hp>
+		<colour>Color [PaleTurquoise]</colour>
+	</block>
+	<block>
+		<x>57</x>
+		<y>196</y>
+		<hp>10</hp>
+		<colour>Color [DarkGray]</colour>
+	</block>
+	<block>
+		<x>145</x>
+		<y>172</y>
+		<hp>10</hp>
+		<colour>Color [DarkGray]</colour>
+	</block>
+	<block>
+		<x>145</x>
+		<y>209</y>
+		<hp>10</hp>
+		<colour>Color [DarkGray]</colour>
+	</block>
+	<block>
+		<x>145</x>
+		<y>246</y>
+		<hp>10</hp>
+		<colour>Color [DarkGray]</colour>
+	</block>
+	<block>
+		<x>145</x>
+		<y>129</y>
+		<hp>10</hp>
+		<colour>Color [DarkGray]</colour>
+	</block>
+	<block>
+		<x>107</x>
+		<y>58</y>
+		<hp>10</hp>
+		<colour>Color [DarkGray]</colour>
+	</block>
+	<block>
+		<x>57</x>
+		<y>58</y>
+		<hp>10</hp>
+		<colour>Color [DarkGray]</colour>
+	</block>
+	<block>
+		<x>57</x>
+		<y>98</y>
+		<hp>10</hp>
+		<colour>Color [DarkGray]</colour>
+	</block>
+	<block>
+		<x>57</x>
+		<y>129</y>
+		<hp>10</hp>
+		<colour>Color [DarkGray]</colour>
+	</block>
+	<block>
+		<x>57</x>
+		<y>161</y>
+		<hp>10</hp>
+		<colour>Color [DarkGray]</colour>
+	</block>
+	<block>
+		<x>151</x>
+		<y>58</y>
+		<hp>10</hp>
+		<colour>Color [DarkGray]</colour>
+	</block>
+	<block>
+		<x>542</x>
+		<y>129</y>
+		<hp>10</hp>
+		<colour>Color [DarkGray]</colour>
+	</block>
+	<block>
+		<x>489</x>
+		<y>129</y>
+		<hp>10</hp>
+		<colour>Color [DarkGray]</colour>
+	</block>
+	<block>
+		<x>433</x>
+		<y>129</y>
+		<hp>10</hp>
+		<colour>Color [DarkGray]</colour>
+	</block>
+	<block>
+		<x>623</x>
+		<y>185</y>
+		<hp>10</hp>
+		<colour>Color [Khaki]</colour>
+	</block>
+	<block>
+		<x>379</x>
+		<y>129</y>
+		<hp>10</hp>
+		<colour>Color [DarkGray]</colour>
+	</block>
+	<block>
+		<x>57</x>
+		<y>233</y>
+		<hp>10</hp>
+		<colour>Color [DarkGray]</colour>
+	</block>
+	<block>
+		<x>240</x>
+		<y>129</y>
+		<hp>10</hp>
+		<colour>Color [DarkGray]</colour>
+	</block>
+	<block>
+		<x>623</x>
+		<y>246</y>
+		<hp>10</hp>
+		<colour>Color [DarkGray]</colour>
+	</block>
+	<block>
+		<x>688</x>
+		<y>209</y>
+		<hp>10</hp>
+		<colour>Color [DarkGray]</colour>
+	</block>
+	<block>
+		<x>542</x>
+		<y>276</y>
+		<hp>10</hp>
+		<colour>Color [DarkGray]</colour>
+	</block>
+	<block>
+		<x>542</x>
+		<y>220</y>
+		<hp>10</hp>
+		<colour>Color [DarkGray]</colour>
+	</block>
+	<block>
+		<x>542</x>
+		<y>172</y>
+		<hp>10</hp>
+		<colour>Color [DarkGray]</colour>
+	</block>
+	<block>
+		<x>333</x>
+		<y>129</y>
+		<hp>10</hp>
+		<colour>Color [DarkGray]</colour>
+	</block>
+	<block>
+		<x>357</x>
+		<y>68</y>
+		<hp>2</hp>
+		<colour>Color [Crimson]</colour>
+	</block>
+	<block>
+		<x>285</x>
+		<y>129</y>
+		<hp>10</hp>
+		<colour>Color [DarkGray]</colour>
+	</block>
+	<block>
+		<x>678</x>
+		<y>135</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>192</x>
+		<y>129</y>
+		<hp>1</hp>
+		<colour>Color [DarkRed]</colour>
+	</block>
+</level>

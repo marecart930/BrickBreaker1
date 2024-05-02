@@ -115,7 +115,7 @@ namespace BrickBreaker
 
 
 
-            XmlReader reader = XmlReader.Create("Resources/firstLevel.xml");
+            XmlReader reader = XmlReader.Create("Resources/secLevel.xml");
 
             while (reader.Read())
             {
@@ -404,6 +404,7 @@ namespace BrickBreaker
             if (ballwatch.ElapsedMilliseconds >= 1000)
             {
                 ballig = Properties.Resources.toy_story_ball_left1;
+                ballwatch.Reset();
             }
 
             //speeding up the ball every 5 seconds
@@ -486,9 +487,13 @@ namespace BrickBreaker
                 {
                     e.Graphics.FillRectangle(yellowBrush, b.x, b.y, b.width, b.height);
                 }
-                if (b.hp == 3)
+                else if (b.hp == 3)
                 {
                     e.Graphics.FillRectangle(cyanBrush, b.x, b.y, b.width, b.height);
+                }
+                else
+                {
+                    e.Graphics.FillRectangle(new SolidBrush(Color.Gray), b.x, b.y, b.width, b.height);
                 }
             }
             // Draws powerups
