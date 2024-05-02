@@ -115,7 +115,7 @@ namespace BrickBreaker
 
 
 
-            XmlReader reader = XmlReader.Create("Resources/firstLevel.xml");
+            XmlReader reader = XmlReader.Create("Resources/sixthLevel.xml");
 
             while (reader.Read())
             {
