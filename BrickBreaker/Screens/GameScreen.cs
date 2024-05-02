@@ -77,7 +77,7 @@ namespace BrickBreaker
 
         public GameScreen()
         {
-            InitializeComponent();
+            InitializeComponent();     
             OnStart();
         }
 

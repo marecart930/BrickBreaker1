@@ -29,14 +29,8 @@ namespace BrickBreaker
 
             x = x + xSpeed;
             y = y + ySpeed;
-            /*
-                        if (y > (GameScreen.height/2) && ySpeed > 0 && GameScreen.gravityBool)
-                        {
-                            y -= (ySpeed / 2);
-                            ySpeed *= -1;
+            
 
-                        }
-            */
             if (GameScreen.gravityBool == true)
             {
                 ySpeed -= .2;
