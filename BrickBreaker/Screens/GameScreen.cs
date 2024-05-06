@@ -9,7 +9,6 @@ using System.Drawing;
 using System.Windows.Forms;
 <<<<<<< HEAD
 using BrickBreaker.Screens;
-=======
 using System.Media;
 using System.Xml;
 using System.Diagnostics;
