@@ -42,7 +42,7 @@ namespace BrickBreaker
             Rectangle blockRecRight = new Rectangle(b.x + b.width - 1, b.y, 2, b.height);
             Rectangle blockRecMiddleBottom = new Rectangle(b.x + 1, b.y + b.height - 1, b.width - 2, 1);
             Rectangle blockRecMiddleTop = new Rectangle(b.x + 1, b.y, b.width - 2, 1);
-            Rectangle ballRec = new Rectangle(x, y, size, size);
+            Rectangle ballRec = new Rectangle(x, Convert.ToInt32(y), size, size);
 
             //checking for intersection with each part of the blocks
             if ((ballRec.IntersectsWith(blockRecMiddleBottom) || ballRec.IntersectsWith(blockRecMiddleTop)) && x > b.x && x < b.x + b.width)
@@ -75,7 +75,7 @@ namespace BrickBreaker
             Rectangle blockRecRight = new Rectangle(p.x + p.width - 1, p.y, 2, p.height);
             Rectangle blockRecMiddleBottom = new Rectangle(p.x + 1, p.y + p.height - 1, p.width - 2, 1);
             Rectangle blockRecMiddleTop = new Rectangle(p.x + 1, p.y, p.width - 2, 1);
-            Rectangle ballRec = new Rectangle(x, y, size, size);
+            Rectangle ballRec = new Rectangle(x, Convert.ToInt32(y), size, size);
 
             int collisonPoint = 0;
 

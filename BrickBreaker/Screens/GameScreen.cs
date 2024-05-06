@@ -588,7 +588,7 @@ namespace BrickBreaker
                 {
                     e.Graphics.DrawImage(E, b.x, b.y);
                 }
-                else
+                else if (b.hp > 5)
                 {
                     e.Graphics.DrawImage(Empty, b.x, b.y);
                 }
@@ -625,7 +625,7 @@ namespace BrickBreaker
             // Draws balls
             foreach (Ball b in balls)
             {
-                e.Graphics.DrawImage(ballig, b.x, b.y);
+                e.Graphics.DrawImage(ballig, b.x, Convert.ToInt32(b.y));
             }
 
             //Draw hearts
