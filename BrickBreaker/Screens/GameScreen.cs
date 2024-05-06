@@ -7,14 +7,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
-<<<<<<< HEAD
 using BrickBreaker.Screens;
 using System.Media;
 using System.Xml;
-using System.Diagnostics;
 using System.Windows.Forms.Automation;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
->>>>>>> 6465838bb2da8523114f3e9a4ccef89bb42306b4
 
 namespace BrickBreaker
 {
@@ -83,7 +80,6 @@ namespace BrickBreaker
             InitializeComponent();     
             OnStart();
         }
-
         public void OnStart()
         {
             height = this.Height;
@@ -156,7 +152,6 @@ namespace BrickBreaker
             // start the game engine loop
             gameTimer.Enabled = true;
         }
-
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             //player 1 button presses
@@ -188,7 +183,6 @@ namespace BrickBreaker
                     break;
             }
         }
-
         private void GameScreen_KeyUp(object sender, KeyEventArgs e)
         {
             //player 1 button releases
@@ -207,7 +201,6 @@ namespace BrickBreaker
                     break;
             }
         }
-
         private void gameTimer_Tick(object sender, EventArgs e)
         {
             //test code to slow game down (will be removed for final game)
@@ -220,7 +213,7 @@ namespace BrickBreaker
                 gameTimer.Interval = 1;
             }
 
-            // Move the paddle
+            #region Move the paddle 
             if (leftArrowDown && paddle.x > 0)
             {
                 paddle.Move("left");
@@ -229,20 +222,21 @@ namespace BrickBreaker
             {
                 paddle.Move("right");
             }
+            #endregion
 
-            // Move ball
+            #region Move ball
             foreach (Ball b in balls)
             {
                 b.Move();
             }
+            #endregion
 
-
+            #region collision
             // Check for collision with top and side walls
             foreach (Ball b in balls)
             {
                 b.WallCollision(this);
             }
-
 
             // Check for ball hitting bottom of screen
             for (int i = 0; i < balls.Count; i++)
@@ -314,8 +308,10 @@ namespace BrickBreaker
                 }
 
             }
+            #endregion
 
-            // Powers
+            #region powers
+
             foreach (Powers p in powerList)
             {
                 //move each powerBall
@@ -419,11 +415,11 @@ namespace BrickBreaker
             {
 
             }
+            #endregion 
 
             //redraw the screen
             Refresh();
         }
-
         public void OnEnd()
         {
             breakTimer.Reset();
@@ -442,7 +438,6 @@ namespace BrickBreaker
             form.Controls.Add(ps);
             form.Controls.Remove(this);
         }
-
         public void GameScreen_Paint(object sender, PaintEventArgs e)
         {
             // Draws paddle

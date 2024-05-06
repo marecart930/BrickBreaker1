@@ -34,7 +34,7 @@
             // pauselabel
             // 
             this.pauselabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pauselabel.Image = global::BrickBreaker.Properties.Resources.Pause;
+            //this.pauselabel.Image = global::BrickBreaker.Properties.Resources.Pause;
             this.pauselabel.Location = new System.Drawing.Point(57, 37);
             this.pauselabel.Name = "pauselabel";
             this.pauselabel.Size = new System.Drawing.Size(738, 297);
