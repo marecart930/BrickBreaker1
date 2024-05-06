@@ -4,16 +4,16 @@
  */
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+<<<<<<< HEAD
+using BrickBreaker.Screens;
+=======
 using System.Media;
 using System.Diagnostics;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
+>>>>>>> 6465838bb2da8523114f3e9a4ccef89bb42306b4
 
 namespace BrickBreaker
 {
@@ -22,7 +22,7 @@ namespace BrickBreaker
         #region global values
 
         //player1 button control keys - DO NOT CHANGE
-        Boolean leftArrowDown, rightArrowDown;
+        Boolean leftArrowDown, rightArrowDown, spaceDown;
 
         // Game values
         int lives;
@@ -59,27 +59,38 @@ namespace BrickBreaker
         public static Random r = new Random();
         #endregion
 
+        Rectangle rc_car = new Rectangle();
+
+        Image rccar = Properties.Resources.RC_top1;
+        Image ballig = Properties.Resources.toy_story_ball_down1;
+
+        Pen redbrush = new Pen(Color.Red);
+
+        Stopwatch ballwatch = new Stopwatch();
+
         public GameScreen()
         {
             InitializeComponent();
             OnStart();
         }
 
-
         public void OnStart()
         {
             //set life counter
             lives = 3;
 
+            List<Label> labels = new List<Label>();
+
             //set all button presses to false.
-            leftArrowDown = rightArrowDown = false;
+            leftArrowDown = rightArrowDown = spaceDown = false;
 
             // setup starting paddle values and create paddle object
+
             int paddleWidth = 80;
-            int paddleHeight = 20;
+            int paddleHeight = 105;
             int paddleX = ((this.Width / 2) - (paddleWidth / 2));
             int paddleY = (this.Height - paddleHeight) - 60;
-            int paddleSpeed = 8;
+            int paddleSpeed = 7;
             paddle = new Paddle(paddleX, paddleY, paddleWidth, paddleHeight, paddleSpeed, Color.White);
 
             // setup starting ball values
@@ -87,8 +98,8 @@ namespace BrickBreaker
             int ballY = this.Height - paddle.height - 80;
 
             // Creates a new ball
-            int xSpeed = 6;
-            int ySpeed = 6;
+            int xSpeed = 8;
+            int ySpeed = 8;
             int ballSize = 20;
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
             balls.Add(ball);
@@ -109,6 +120,12 @@ namespace BrickBreaker
 
             #endregion
 
+            rc_car.X = paddle.x;
+            rc_car.Y = paddle.y;
+            rc_car.Width = paddle.width;
+            rc_car.Height = paddle.height;
+
+
             // start the game engine loop
             gameTimer.Enabled = true;
         }
@@ -124,7 +141,23 @@ namespace BrickBreaker
                 case Keys.Right:
                     rightArrowDown = true;
                     break;
+                /*case Keys.Space:
+                    spaceDown = true;
+                    break;*/
                 default:
+                    break;
+                case Keys.Escape:
+                    Application.Exit();
+                    break;
+                case Keys.P:
+                    Form form = this.FindForm();
+                    Pause_screen pausescreen = new Pause_screen();
+
+                    pausescreen.Location = new Point((form.Width - pausescreen.Width) / 2, (form.Height - pausescreen.Height) / 2);
+
+                    form.Controls.Add(pausescreen);
+                    pausescreen.Focus();
+                    form.Controls.Remove(this);
                     break;
             }
         }
@@ -140,6 +173,9 @@ namespace BrickBreaker
                 case Keys.Right:
                     rightArrowDown = false;
                     break;
+                /*case Keys.Space:
+                    spaceDown = false;
+                    break;*/
                 default:
                     break;
             }
@@ -147,6 +183,16 @@ namespace BrickBreaker
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
+            /*//test code to slow game down
+            if (spaceDown)
+            {
+                gameTimer.Interval = 100;
+            }
+            else
+            {
+                gameTimer.Interval = 1;
+            }*/
+
             // Move the paddle
             if (leftArrowDown && paddle.x > 0)
             {
@@ -301,6 +347,26 @@ namespace BrickBreaker
 
             }
 
+            //ball animations
+            ballwatch.Start();
+            if (ballwatch.ElapsedMilliseconds >= 200)
+            {
+                ballig = Properties.Resources.toy_story_ball_down1;
+            }
+            if (ballwatch.ElapsedMilliseconds >= 400)
+            {
+                ballig = Properties.Resources.toy_story_ball_right1;
+            }
+            if (ballwatch.ElapsedMilliseconds >= 600)
+            {
+                ballig = Properties.Resources.toy_story_ball_up1;
+            }
+            if (ballwatch.ElapsedMilliseconds >= 800)
+            {
+                ballig = Properties.Resources.toy_story_ball_left1;
+                ballwatch.Reset();
+            }
+
             //redraw the screen
             Refresh();
         }
@@ -320,8 +386,26 @@ namespace BrickBreaker
         public void GameScreen_Paint(object sender, PaintEventArgs e)
         {
             // Draws paddle
-            paddleBrush.Color = paddle.colour;
-            e.Graphics.FillRectangle(paddleBrush, paddle.x, paddle.y, paddle.width, paddle.height);
+            //paddleBrush.Color = paddle.colour;
+            e.Graphics.DrawRectangle(redbrush, paddle.x, paddle.y, paddle.width, paddle.height);
+            if (leftArrowDown == true)
+            {
+                paddle.height = 80;
+                paddle.width = 105;
+                e.Graphics.DrawImage(Properties.Resources.RC_top_right, paddle.x, paddle.y, paddle.width, paddle.height);
+            }
+            else if (rightArrowDown == true)
+            {
+                paddle.height = 80;
+                paddle.width = 105;
+                e.Graphics.DrawImage(Properties.Resources.RC_top_left, paddle.x, paddle.y, paddle.width, paddle.height);
+            }
+            else
+            {
+                paddle.height = 105;
+                paddle.width = 80;
+                e.Graphics.DrawImage(rccar, paddle.x, paddle.y, paddle.width, paddle.height);
+            }
 
             // Draws blocks
             foreach (Block b in blocks)
@@ -356,6 +440,9 @@ namespace BrickBreaker
             {
                 e.Graphics.FillRectangle(ballBrush, b.x, b.y, b.size, b.size);
             }
+
+            // Draws ball
+                e.Graphics.DrawImage(ballig, ball.x, ball.y, ball.size, ball.size);
 
         }
     }
