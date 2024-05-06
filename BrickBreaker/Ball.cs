@@ -2,17 +2,19 @@
 using System.CodeDom;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Xml.XPath;
 
 namespace BrickBreaker
 {
     public class Ball
     {
-        public int x, y, xSpeed, ySpeed, size;
+        public int x, xSpeed, size;
+        public double ySpeed, y;
         public Color colour;
 
         public static Random rand = new Random();
 
-        public Ball(int _x, int _y, int _xSpeed, int _ySpeed, int _ballSize)
+        public Ball(int _x, double _y, int _xSpeed, double _ySpeed, int _ballSize)
         {
             x = _x;
             y = _y;
@@ -24,33 +26,52 @@ namespace BrickBreaker
 
         public void Move()
         {
-            
             x = x + xSpeed;
             y = y + ySpeed;
-        }
+            
 
+            if (GameScreen.gravityBool == true)
+            {
+                ySpeed -= .2;
+            }
+
+        }
         public bool BlockCollision(Block b)
         {
             //creating temporary rectangles
-            Rectangle blockRecLeft = new Rectangle(b.x, b.y + 1, 2, b.height);
-            Rectangle blockRecRight = new Rectangle(b.x + b.width - 1, b.y + 1, 2, b.height);
-            Rectangle blockRecMiddle = new Rectangle(b.x + 1, b.y, b.width - 1, b.height + 2);
-            Rectangle ballRec = new Rectangle(x, y, size, size);
+            Rectangle blockRecLeft = new Rectangle(b.x + 1, b.y, 2, b.height); //amoguss //blow up more
+            Rectangle blockRecRight = new Rectangle(b.x + b.width - 1, b.y, 2, b.height);
+            Rectangle blockRecMiddle = new Rectangle(b.x - 1, b.y - 1, b.width - 2, b.height + 2);
+            Rectangle ballRec = new Rectangle(x, Convert.ToInt32(y), size, size);
 
             //checking for intersection with each part of the blocks
-            if (ballRec.IntersectsWith(blockRecLeft) && xSpeed > 0)
+            if (ballRec.IntersectsWith(blockRecMiddle))
             {
-                xSpeed *= -1;
+                ySpeed *= -1;
+
+                if (GameScreen.breakthroughBool == false)
+                {
+                    xSpeed *= -1;
+                }
+                return true;
+            }
+            else if (ballRec.IntersectsWith(blockRecLeft) && xSpeed > 0)
+            {
+                if (GameScreen.breakthroughBool == false)
+                {
+                    xSpeed *= -1;
+                }
+
                 return true;
             }
             else if (ballRec.IntersectsWith(blockRecRight) && xSpeed < 0)
             {
                 xSpeed *= -1;
-                return true;
-            }
-            else if (ballRec.IntersectsWith(blockRecMiddle))
-            {
-                ySpeed *= -1;
+                if (GameScreen.breakthroughBool == false)
+                {
+                    ySpeed *= -1;
+                }
+
                 return true;
             }
 
@@ -58,13 +79,13 @@ namespace BrickBreaker
             return false;
         }
 
-        public void PaddleCollision(Paddle p)
+        public void PaddleCollision(Paddle p, int extraSpeed)
         {
             //creating temporary rectangles
             Rectangle blockRecLeft = new Rectangle(p.x, p.y + 1, 2, p.height);
             Rectangle blockRecRight = new Rectangle(p.x + p.width - 1, p.y + 1, 2, p.height);
             Rectangle blockRecMiddle = new Rectangle(p.x + 1, p.y, p.width - 1, p.height + 2);
-            Rectangle ballRec = new Rectangle(x, y, size, size);
+            Rectangle ballRec = new Rectangle(x, Convert.ToInt32(y), size, size);
 
             int collisonPoint = 0;
 
@@ -79,26 +100,26 @@ namespace BrickBreaker
                 {
                     if (xSpeed < 0)
                     {
-                        xSpeed = -11;
-                        ySpeed = -7;
+                        xSpeed = -9 - extraSpeed;
+                        ySpeed = -5 - extraSpeed;
                     }
                     else
                     {
-                        xSpeed = 11;
-                        ySpeed = -7;
+                        xSpeed = 9 + extraSpeed;
+                        ySpeed = -5 - extraSpeed;
                     }
                 }
                 else if (collisonPoint > 5 && collisonPoint < 55)
                 {
                     if (xSpeed < 0)
                     {
-                        xSpeed = -10;
-                        ySpeed = -8;
+                        xSpeed = -8 - extraSpeed;
+                        ySpeed = -6 - extraSpeed;
                     }
                     else
                     {
-                        xSpeed = 10;
-                        ySpeed = -8;
+                        xSpeed = 8 + extraSpeed;
+                        ySpeed = -6 - extraSpeed;
                     }
                 }
             }

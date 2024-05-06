@@ -118,6 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="firstLevel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\firstLevel.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="secLevel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\secLevel.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
   <data name="blocks A1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\blocks A1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -135,12 +141,6 @@
   </data>
   <data name="blocks empty1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\blocks empty1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Pause" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Pause.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Pause_4_26_2024" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\pause-4-26-2024.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="RC-top1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\RC-top1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -162,7 +162,7 @@
   </data>
   <data name="toy story ball up1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\toy story ball up1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-</data>
+  </data>
   <data name="BrickBreakerLogo_removebg_preview__2_" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BrickBreakerLogo-removebg-preview (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -174,5 +174,17 @@
   </data>
   <data name="YOU_WIN_4_25_2024_removebg_preview" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\YOU-WIN-4-25-2024-removebg-preview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="thirdLevel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\thirdLevel.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="fifthLevel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fifthLevel.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="fourthLevel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fourthLevel.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="sixthLevel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sixthLevel.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>

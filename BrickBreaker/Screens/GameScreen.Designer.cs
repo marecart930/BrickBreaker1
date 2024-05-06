@@ -44,6 +44,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.DoubleBuffered = true;
+            this.Location = new System.Drawing.Point(0, 102);
             this.Name = "GameScreen";
             this.Size = new System.Drawing.Size(854, 542);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.GameScreen_Paint);
@@ -54,7 +55,6 @@
         }
 
         #endregion
-
         private System.Windows.Forms.Timer gameTimer;
     }
 }
