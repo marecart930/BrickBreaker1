@@ -8,12 +8,13 @@ namespace BrickBreaker
 {
     public class Ball
     {
-        public int x, y, xSpeed, ySpeed, size;
+        public int x, xSpeed, size;
+        public double ySpeed, y;
         public Color colour;
 
         public static Random rand = new Random();
 
-        public Ball(int _x, int _y, int _xSpeed, int _ySpeed, int _ballSize)
+        public Ball(int _x, double _y, int _xSpeed, double _ySpeed, int _ballSize)
         {
             x = _x;
             y = _y;
@@ -27,12 +28,11 @@ namespace BrickBreaker
         {
             x = x + xSpeed;
             y = y + ySpeed;
+            
 
-            if (y > 350 && ySpeed > 0 && GameScreen.gravityBool)
+            if (GameScreen.gravityBool == true)
             {
-                y -= (ySpeed / 2);
-                ySpeed *= -1;
-                y--;
+                ySpeed -= .2;
             }
         }
         public bool BlockCollision(Block b)

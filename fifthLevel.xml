@@ -1,0 +1,482 @@
+﻿<level>
+	<block>
+		<x>28</x>
+		<y>140</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>74</x>
+		<y>140</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>28</x>
+		<y>94</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>28</x>
+		<y>48</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>74</x>
+		<y>48</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>304</x>
+		<y>0</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>258</x>
+		<y>0</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>212</x>
+		<y>0</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>166</x>
+		<y>0</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>120</x>
+		<y>0</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>74</x>
+		<y>0</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>28</x>
+		<y>0</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>304</x>
+		<y>186</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>258</x>
+		<y>186</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>212</x>
+		<y>186</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>166</x>
+		<y>186</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>120</x>
+		<y>186</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>74</x>
+		<y>186</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>28</x>
+		<y>186</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>718</x>
+		<y>0</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>672</x>
+		<y>0</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>626</x>
+		<y>0</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>580</x>
+		<y>0</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>534</x>
+		<y>0</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>488</x>
+		<y>0</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>442</x>
+		<y>0</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>396</x>
+		<y>0</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>718</x>
+		<y>50</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>672</x>
+		<y>48</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>626</x>
+		<y>48</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>718</x>
+		<y>96</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>672</x>
+		<y>94</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>718</x>
+		<y>140</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>672</x>
+		<y>140</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>626</x>
+		<y>140</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>718</x>
+		<y>186</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>672</x>
+		<y>186</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>626</x>
+		<y>186</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>580</x>
+		<y>186</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>534</x>
+		<y>186</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>488</x>
+		<y>186</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>442</x>
+		<y>186</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>396</x>
+		<y>186</y>
+		<hp>2</hp>
+		<colour>Color [Goldenrod]</colour>
+	</block>
+	<block>
+		<x>350</x>
+		<y>186</y>
+		<hp>1</hp>
+		<colour>Color [DarkRed]</colour>
+	</block>
+	<block>
+		<x>304</x>
+		<y>140</y>
+		<hp>1</hp>
+		<colour>Color [DarkRed]</colour>
+	</block>
+	<block>
+		<x>258</x>
+		<y>140</y>
+		<hp>1</hp>
+		<colour>Color [DarkRed]</colour>
+	</block>
+	<block>
+		<x>212</x>
+		<y>140</y>
+		<hp>1</hp>
+		<colour>Color [DarkRed]</colour>
+	</block>
+	<block>
+		<x>166</x>
+		<y>140</y>
+		<hp>1</hp>
+		<colour>Color [DarkRed]</colour>
+	</block>
+	<block>
+		<x>120</x>
+		<y>140</y>
+		<hp>1</hp>
+		<colour>Color [DarkRed]</colour>
+	</block>
+	<block>
+		<x>74</x>
+		<y>94</y>
+		<hp>1</hp>
+		<colour>Color [DarkRed]</colour>
+	</block>
+	<block>
+		<x>120</x>
+		<y>48</y>
+		<hp>1</hp>
+		<colour>Color [DarkRed]</colour>
+	</block>
+	<block>
+		<x>166</x>
+		<y>48</y>
+		<hp>1</hp>
+		<colour>Color [DarkRed]</colour>
+	</block>
+	<block>
+		<x>212</x>
+		<y>48</y>
+		<hp>1</hp>
+		<colour>Color [DarkRed]</colour>
+	</block>
+	<block>
+		<x>258</x>
+		<y>48</y>
+		<hp>1</hp>
+		<colour>Color [DarkRed]</colour>
+	</block>
+	<block>
+		<x>350</x>
+		<y>0</y>
+		<hp>1</hp>
+		<colour>Color [DarkRed]</colour>
+	</block>
+	<block>
+		<x>304</x>
+		<y>48</y>
+		<hp>1</hp>
+		<colour>Color [DarkRed]</colour>
+	</block>
+	<block>
+		<x>396</x>
+		<y>48</y>
+		<hp>1</hp>
+		<colour>Color [DarkRed]</colour>
+	</block>
+	<block>
+		<x>442</x>
+		<y>48</y>
+		<hp>1</hp>
+		<colour>Color [DarkRed]</colour>
+	</block>
+	<block>
+		<x>488</x>
+		<y>48</y>
+		<hp>1</hp>
+		<colour>Color [DarkRed]</colour>
+	</block>
+	<block>
+		<x>534</x>
+		<y>48</y>
+		<hp>1</hp>
+		<colour>Color [DarkRed]</colour>
+	</block>
+	<block>
+		<x>580</x>
+		<y>48</y>
+		<hp>1</hp>
+		<colour>Color [DarkRed]</colour>
+	</block>
+	<block>
+		<x>626</x>
+		<y>94</y>
+		<hp>1</hp>
+		<colour>Color [DarkRed]</colour>
+	</block>
+	<block>
+		<x>580</x>
+		<y>140</y>
+		<hp>1</hp>
+		<colour>Color [DarkRed]</colour>
+	</block>
+	<block>
+		<x>534</x>
+		<y>140</y>
+		<hp>1</hp>
+		<colour>Color [DarkRed]</colour>
+	</block>
+	<block>
+		<x>488</x>
+		<y>140</y>
+		<hp>1</hp>
+		<colour>Color [DarkRed]</colour>
+	</block>
+	<block>
+		<x>442</x>
+		<y>140</y>
+		<hp>1</hp>
+		<colour>Color [DarkRed]</colour>
+	</block>
+	<block>
+		<x>396</x>
+		<y>140</y>
+		<hp>1</hp>
+		<colour>Color [DarkRed]</colour>
+	</block>
+	<block>
+		<x>350</x>
+		<y>48</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>350</x>
+		<y>140</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>580</x>
+		<y>94</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>534</x>
+		<y>94</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>488</x>
+		<y>94</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>442</x>
+		<y>94</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>396</x>
+		<y>94</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>166</x>
+		<y>94</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>304</x>
+		<y>94</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>258</x>
+		<y>94</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>350</x>
+		<y>94</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>212</x>
+		<y>94</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>120</x>
+		<y>94</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+</level>

@@ -30,6 +30,9 @@ namespace BrickBreaker
         Image rcCarRight = Properties.Resources.RC_top_right;
         Image ballig = Properties.Resources.toy_story_ball_down1;
 
+        public static int width;
+        public static int height;
+
         //player1 button control keys - DO NOT CHANGE
         Boolean leftArrowDown, rightArrowDown, spaceDown;
 
@@ -51,6 +54,7 @@ namespace BrickBreaker
 
         public static bool breakthroughBool;
         public static bool gravityBool;
+        public static bool extendBool;
 
         // list of all blocks for current level
         List<Block> blocks = new List<Block>();
@@ -83,12 +87,17 @@ namespace BrickBreaker
 
         public GameScreen()
         {
-            InitializeComponent();
+            InitializeComponent();     
             OnStart();
         }
 
         public void OnStart()
         {
+            height = this.Height;
+            width = this.Width;
+            // make height and width variables
+           
+
             //set life counter
             lives = 3;
             counter = extraSpeed = 0;
@@ -122,7 +131,8 @@ namespace BrickBreaker
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
             balls.Add(ball);
 
-            XmlReader reader = XmlReader.Create("Resources/FirstLevel.xml");
+
+            XmlReader reader = XmlReader.Create("Resources/firstLevel.xml");
 
             while (reader.Read())
             {
@@ -252,12 +262,21 @@ namespace BrickBreaker
 
                     if (balls.Count == 0)
                     {
+                        gravityBool = false;
+                        breakthroughBool = false;
+                        extendBool = false;
+                        gravityTimer.Reset();
+                        breakTimer.Reset();
+                        extendTimer.Reset();
+
                         lives--;
 
                         // Moves the ball back to origin
+                        ball.xSpeed = 0;
+                        ball.ySpeed = 0;
                         balls.Add(ball);
                         balls[i].x = ((paddle.x - (ball.size / 2)) + (paddle.width / 2));
-                        balls[i].y = (this.Height - paddle.height) - 85;
+                        balls[i].y = (this.Height - paddle.height) - 105;
                     }
 
                     if (lives == 0)
@@ -365,8 +384,12 @@ namespace BrickBreaker
                             else
                             {
                                 extendTimer.Start();
-                                paddle.width += 40;
-                                paddle.x -= 20;
+                                extendBool = true;
+                                
+                                paddle.width += 80;
+                                paddle.x -= 40;
+                                rc_car.X = paddle.x;
+                                rc_car.Width = paddle.width;
                             }
                             break;
                     }
@@ -383,6 +406,8 @@ namespace BrickBreaker
             }
 
             //check if duration has run out for each powerup
+
+            //breakThrough
             if (4 < Convert.ToDouble(breakTimer.ElapsedMilliseconds / 1000))
             {
                 breakTimer.Reset();
@@ -396,6 +421,9 @@ namespace BrickBreaker
                 extendTimer.Reset();
                 paddle.width -= 40;
                 paddle.x += 20;
+                rc_car.X = paddle.x;
+                rc_car.Width = paddle.width;
+                extendBool = false;
             }
 
             //gravity powerup
@@ -423,6 +451,33 @@ namespace BrickBreaker
             if (ballwatch.ElapsedMilliseconds >= 1000)
             {
                 ballig = Properties.Resources.toy_story_ball_left1;
+                ballwatch.Restart();
+            }
+
+            // keep ball above paddle before release
+            if (spaceDown == true && ball.xSpeed == 0)
+            {
+               //determine which way the ball travels
+               if (leftArrowDown == true)
+                {
+                    ball.xSpeed = -8;
+                    ball.ySpeed = -8;
+                }
+                else if (rightArrowDown == true)
+                {
+                    ball.xSpeed = 8;
+                    ball.ySpeed = -8;
+                }
+                else
+                {
+                    ball.xSpeed = r.Next (1,5);
+                    ball.ySpeed = r.Next(-8,8);
+                }
+            }
+            if (ball.xSpeed == 0 && ball.ySpeed == 0)
+            {
+                ball.x = ((paddle.x - (ball.size / 2)) + (paddle.width / 2));
+                ball.y = (this.Height - paddle.height) - 110;
             }
 
             //speeding up the ball every 5 seconds
@@ -457,6 +512,7 @@ namespace BrickBreaker
             extendTimer.Reset();
             gravityBool = false;
             breakthroughBool = false;
+            extendBool = false;
 
             // Goes to the game over screen
             Form form = this.FindForm();
@@ -475,12 +531,29 @@ namespace BrickBreaker
             e.Graphics.DrawRectangle(redbrush, paddle.x, paddle.y, paddle.width, paddle.height);
             if (leftArrowDown == true)
             {
+                if (extendBool == true)
+                {   
+                    paddle.width = 105 + 40;
+                }
+                else
+                {
+                    paddle.width = 105;
+                }
                 paddle.height = 80;
                 paddle.width = 105;
                 e.Graphics.DrawImage(rcCarRight, paddle.x, paddle.y);
+
             }
             else if (rightArrowDown == true)
             {
+                if (extendBool == true)
+                {
+                    paddle.width = 105 + 40;
+                }
+                else
+                {
+                    paddle.width = 105;
+                }
                 paddle.height = 80;
                 paddle.width = 105;
                 e.Graphics.DrawImage(rcCarLeft, paddle.x, paddle.y);
@@ -519,6 +592,10 @@ namespace BrickBreaker
                 {
                     e.Graphics.DrawImage(Empty, b.x, b.y);
                 }
+                else
+                {
+                    e.Graphics.FillRectangle(new SolidBrush(Color.Gray), b.x, b.y, b.width, b.height);
+                }
             }
 
 
@@ -549,6 +626,14 @@ namespace BrickBreaker
             foreach (Ball b in balls)
             {
                 e.Graphics.DrawImage(ballig, b.x, b.y);
+            }
+
+            //Draw hearts
+            int xVal = 10;
+            for(int i = 0; i < lives; i++)
+            {
+                e.Graphics.DrawImage(ballig, xVal, this.Height - 40, 20, 20);
+                xVal += 25;
             }
         }
     }
