@@ -176,6 +176,11 @@ namespace BrickBreaker
             }
         }
 
+        private void pressStartLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void GameScreen_KeyUp(object sender, KeyEventArgs e)
         {
             //player 1 button releases
@@ -240,6 +245,7 @@ namespace BrickBreaker
 
                     if (balls.Count == 0)
                     {
+                        pressStartLabel.Visible = true;
                         gravityBool = false;
                         breakthroughBool = false;
                         extendBool = false;
@@ -277,16 +283,23 @@ namespace BrickBreaker
                 {
                     if (balls[i].BlockCollision(b))
                     {
+                        //do not collide if ball has not been launched
+                        if (balls[i].xSpeed == 0 && balls[i].ySpeed == 0)
+                        {
+                            break;
+                        }
+
                         b.hp--;
 
-                        //random chance to spawn a powerup
-                        if (r.Next(1, 2) == 1)
-                        {
-                            Powers power = new Powers(b.x + (b.width / 2), b.y + (b.height / 2), "");
-                            powerList.Add(power);
-                        }
+                        // if block hp = 0
                         if(b.hp == 0)
                         {
+                            //random chance to spawn a powerup
+                            if (r.Next(1, 2) == 1)
+                            {
+                                Powers power = new Powers(b.x + (b.width / 2), b.y + (b.height / 2), "");
+                                powerList.Add(power);
+                            }
                             blocks.Remove(b);
                         }
 
@@ -432,6 +445,7 @@ namespace BrickBreaker
             // keep ball above paddle before release
             if (spaceDown == true && ball.xSpeed == 0)
             {
+                pressStartLabel.Visible = false;
                //determine which way the ball travels
                if (leftArrowDown == true)
                 {
@@ -445,8 +459,9 @@ namespace BrickBreaker
                 }
                 else
                 {
-                    ball.xSpeed = r.Next (1,5);
+                    ball.xSpeed = r.Next (3,6);
                     ball.ySpeed = r.Next(-8,8);
+
                 }
             }
             if (ball.xSpeed == 0 && ball.ySpeed == 0)
@@ -466,12 +481,23 @@ namespace BrickBreaker
             {
                 foreach (Block b in blocks)
                 {
-                    b.y += 10;
-                    if (b.y >= paddle.y)
+                    for (int i = 0; i < balls.Count; i++)
                     {
-                        gameTimer.Enabled = false;
-                        OnEnd();
-                        break;
+                        if (balls[i].xSpeed == 0 && balls[i].ySpeed == 0)
+                        {
+                            // do nothing
+                        }
+                        else
+                        {
+                            b.y += 10;
+                          
+                            if (b.y >= paddle.y)
+                            {
+                                gameTimer.Enabled = false;
+                                OnEnd();
+                                break;
+                            }
+                        }
                     }
                 }
             }
