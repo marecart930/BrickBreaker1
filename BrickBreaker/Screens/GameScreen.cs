@@ -7,9 +7,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
+using BrickBreaker.Screens;
 using System.Media;
 using System.Xml;
-using System.Diagnostics;
 using System.Windows.Forms.Automation;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
@@ -90,7 +90,6 @@ namespace BrickBreaker
             InitializeComponent();     
             OnStart();
         }
-
         public void OnStart()
         {
             height = this.Height;
@@ -175,7 +174,6 @@ namespace BrickBreaker
             // start the game engine loop
             gameTimer.Enabled = true;
         }
-
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             //player 1 button presses
@@ -193,11 +191,18 @@ namespace BrickBreaker
                 case Keys.Escape:
                     Application.Exit();
                     break;
-                default:
+                case Keys.P:
+                    Form form = this.FindForm();
+                    Pause_screen pausescreen = new Pause_screen();
+
+                    pausescreen.Location = new Point((form.Width - pausescreen.Width) / 2, (form.Height - pausescreen.Height) / 2);
+
+                    form.Controls.Add(pausescreen);
+                    pausescreen.Focus();
+                    form.Controls.Remove(this);
                     break;
             }
         }
-
         private void GameScreen_KeyUp(object sender, KeyEventArgs e)
         {
             //player 1 button releases
@@ -216,7 +221,6 @@ namespace BrickBreaker
                     break;
             }
         }
-
         private void gameTimer_Tick(object sender, EventArgs e)
         {
             //test code to slow game down (will be removed for final game)
@@ -229,7 +233,7 @@ namespace BrickBreaker
                 gameTimer.Interval = 1;
             }
 
-            // Move the paddle
+            #region Move the paddle 
             if (leftArrowDown && paddle.x > 0)
             {
                 paddle.Move("left");
@@ -238,20 +242,21 @@ namespace BrickBreaker
             {
                 paddle.Move("right");
             }
+            #endregion
 
-            // Move ball
+            #region Move ball
             foreach (Ball b in balls)
             {
                 b.Move();
             }
+            #endregion
 
-
+            #region collision
             // Check for collision with top and side walls
             foreach (Ball b in balls)
             {
                 b.WallCollision(this);
             }
-
 
             // Check for ball hitting bottom of screen
             for (int i = 0; i < balls.Count; i++)
@@ -324,8 +329,10 @@ namespace BrickBreaker
                 }
 
             }
+            #endregion
 
-            // Powers
+            #region powers
+
             foreach (Powers p in powerList)
             {
                 //move each powerBall
@@ -429,56 +436,7 @@ namespace BrickBreaker
             //gravity powerup
             if (7 < Convert.ToDouble(gravityTimer.ElapsedMilliseconds / 1000))
             {
-                gravityTimer.Reset();
-                gravityBool = false;
-                ballBrush.Color = Color.White;
-            }
 
-            //ball animations
-            ballwatch.Start();
-            if (ballwatch.ElapsedMilliseconds >= 200)
-            {
-                ballig = Properties.Resources.toy_story_ball_down1;
-            }
-            if (ballwatch.ElapsedMilliseconds >= 400)
-            {
-                ballig = Properties.Resources.toy_story_ball_right1;
-            }
-            if (ballwatch.ElapsedMilliseconds >= 600)
-            {
-                ballig = Properties.Resources.toy_story_ball_up1;
-            }
-            if (ballwatch.ElapsedMilliseconds >= 1000)
-            {
-                ballig = Properties.Resources.toy_story_ball_left1;
-                ballwatch.Restart();
-            }
-
-            // keep ball above paddle before release
-            if (spaceDown == true && ball.xSpeed == 0)
-            {
-               //determine which way the ball travels
-               if (leftArrowDown == true)
-                {
-                    ball.xSpeed = -8;
-                    ball.ySpeed = -8;
-                }
-                else if (rightArrowDown == true)
-                {
-                    ball.xSpeed = 8;
-                    ball.ySpeed = -8;
-                }
-                else
-                {
-                    ball.xSpeed = r.Next (1,5);
-                    ball.ySpeed = r.Next(-8,8);
-                }
-            }
-            if (ball.xSpeed == 0 && ball.ySpeed == 0)
-            {
-                ball.x = ((paddle.x - (ball.size / 2)) + (paddle.width / 2));
-                ball.y = (this.Height - paddle.height) - 110;
-            }
 
             //speeding up the ball every 5 seconds
             counter++;
@@ -500,11 +458,11 @@ namespace BrickBreaker
                     }
                 }
             }
+            #endregion 
 
             //redraw the screen
             Refresh();
         }
-
         public void OnEnd()
         {
             breakTimer.Reset();
@@ -523,10 +481,10 @@ namespace BrickBreaker
             form.Controls.Add(ps);
             form.Controls.Remove(this);
         }
-
         public void GameScreen_Paint(object sender, PaintEventArgs e)
         {
             // Draws paddle
+
             //paddleBrush.Color = paddle.colour;
             e.Graphics.DrawRectangle(redbrush, paddle.x, paddle.y, paddle.width, paddle.height);
             if (leftArrowDown == true)
@@ -635,6 +593,7 @@ namespace BrickBreaker
                 e.Graphics.DrawImage(ballig, xVal, this.Height - 40, 20, 20);
                 xVal += 25;
             }
+
         }
     }
 }
