@@ -587,6 +587,14 @@ namespace BrickBreaker
             {
                 e.Graphics.DrawImage(ballig, b.x, Convert.ToInt32(b.y), b.size, b.size);
             }
+
+            //Draw hearts
+            int xVal = 10;
+            for(int i = 0; i < lives; i++)
+            {
+                e.Graphics.DrawImage(ballig, xVal, this.Height - 40, 20, 20);
+                xVal += 25;
+            }
         }
     }
 }
