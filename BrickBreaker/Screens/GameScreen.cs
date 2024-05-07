@@ -7,11 +7,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
-using BrickBreaker.Screens;
-using System.Media;
 using System.Xml;
-using System.Windows.Forms.Automation;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
+using BrickBreaker.Screens;
 
 namespace BrickBreaker
 {
@@ -87,7 +84,7 @@ namespace BrickBreaker
 
         public GameScreen()
         {
-            InitializeComponent();     
+            InitializeComponent();
             OnStart();
         }
         public void OnStart()
@@ -95,7 +92,7 @@ namespace BrickBreaker
             height = this.Height;
             width = this.Width;
             // make height and width variables
-           
+
 
             //set life counter
             lives = 3;
@@ -392,7 +389,7 @@ namespace BrickBreaker
                             {
                                 extendTimer.Start();
                                 extendBool = true;
-                                
+
                                 paddle.width += 80;
                                 paddle.x -= 40;
                                 rc_car.X = paddle.x;
@@ -438,30 +435,31 @@ namespace BrickBreaker
             {
 
 
-            //speeding up the ball every 5 seconds
-            counter++;
-            if (counter % 5000 == 0)
-            {
-                extraSpeed++;
-            }
-
-            if (counter % counterInterval == 0)
-            {
-                foreach (Block b in blocks)
+                //speeding up the ball every 5 seconds
+                counter++;
+                if (counter % 5000 == 0)
                 {
-                    b.y += 10;
-                    if (b.y >= paddle.y)
+                    extraSpeed++;
+                }
+
+                if (counter % counterInterval == 0)
+                {
+                    foreach (Block b in blocks)
                     {
-                        gameTimer.Enabled = false;
-                        OnEnd();
-                        break;
+                        b.y += 10;
+                        if (b.y >= paddle.y)
+                        {
+                            gameTimer.Enabled = false;
+                            OnEnd();
+                            break;
+                        }
                     }
                 }
-            }
-            #endregion 
+                #endregion
 
-            //redraw the screen
-            Refresh();
+                //redraw the screen
+                Refresh();
+            }
         }
         public void OnEnd()
         {
@@ -490,7 +488,7 @@ namespace BrickBreaker
             if (leftArrowDown == true)
             {
                 if (extendBool == true)
-                {   
+                {
                     paddle.width = 105 + 40;
                 }
                 else
@@ -588,7 +586,7 @@ namespace BrickBreaker
 
             //Draw hearts
             int xVal = 10;
-            for(int i = 0; i < lives; i++)
+            for (int i = 0; i < lives; i++)
             {
                 e.Graphics.DrawImage(ballig, xVal, this.Height - 40, 20, 20);
                 xVal += 25;
