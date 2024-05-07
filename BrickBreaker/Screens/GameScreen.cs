@@ -116,7 +116,7 @@ namespace BrickBreaker
             int paddleHeight = 105;
             int paddleX = ((this.Width / 2) - (paddleWidth / 2));
             int paddleY = (this.Height - paddleHeight) - 70;
-            int paddleSpeed = 10;
+            int paddleSpeed = 7;
             paddle = new Paddle(paddleX, paddleY, paddleWidth, paddleHeight, paddleSpeed, Color.White);
 
             // setup starting ball values
@@ -297,6 +297,8 @@ namespace BrickBreaker
             // Check if ball has collided with any blocks
             foreach (Block b in blocks)
             {
+                bool keepLooking = true;
+                
                 for (int i = 0; i < balls.Count; i++)
                 {
                     if (balls[i].BlockCollision(b))
@@ -313,12 +315,14 @@ namespace BrickBreaker
                         if(b.hp == 0)
                         {
                             //random chance to spawn a powerup
-                            if (r.Next(1, 2) == 1)
+                            if (r.Next(1, 3) == 1)
                             {
                                 Powers power = new Powers(b.x + (b.width / 2), b.y + (b.height / 2), "");
                                 powerList.Add(power);
                             }
+                            keepLooking = false;
                             blocks.Remove(b);
+                            
                         }
 
                         if (blocks.Count == 0)
@@ -327,8 +331,14 @@ namespace BrickBreaker
                             OnEnd();
                         }
 
-                        return;
+                        break;
                     }
+                   
+                }
+                // break out of loop
+                if (keepLooking == false)
+                {
+                    break;
                 }
 
             }
@@ -423,7 +433,7 @@ namespace BrickBreaker
                 breakthroughBool = false;
             }
 
-            //extend poweru
+            //extend powerup
             if (10 < Convert.ToDouble(extendTimer.ElapsedMilliseconds / 1000))
             {
                 extendTimer.Reset();
@@ -481,13 +491,12 @@ namespace BrickBreaker
                 {
                     ball.xSpeed = r.Next (3,6);
                     ball.ySpeed = r.Next(-8,8);
-
                 }
             }
             if (ball.xSpeed == 0 && ball.ySpeed == 0)
             {
                 ball.x = ((paddle.x - (ball.size / 2)) + (paddle.width / 2));
-                ball.y = (this.Height - paddle.height) - 110;
+                ball.y = (this.Height - paddle.height) -135;
             }
 
             //speeding up the ball every 5 seconds
@@ -561,9 +570,7 @@ namespace BrickBreaker
                     paddle.width = 105;
                 }
                 paddle.height = 80;
-                paddle.width = 105;
                 e.Graphics.DrawImage(rcCarRight, paddle.x, paddle.y);
-
             }
             else if (rightArrowDown == true)
             {
@@ -576,7 +583,6 @@ namespace BrickBreaker
                     paddle.width = 105;
                 }
                 paddle.height = 80;
-                paddle.width = 105;
                 e.Graphics.DrawImage(rcCarLeft, paddle.x, paddle.y);
             }
             else
