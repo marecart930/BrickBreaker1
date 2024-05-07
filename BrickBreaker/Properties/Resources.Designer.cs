@@ -268,8 +268,10 @@ namespace BrickBreaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap RC_top_right {
-            get {
+        internal static System.Drawing.Bitmap RC_top_right
+        {
+            get
+            {
                 object obj = ResourceManager.GetObject("RC_top_right", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
@@ -450,7 +452,8 @@ namespace BrickBreaker.Properties {
         ///	&lt;brick&gt;
         ///		&lt;rectangle&gt;
         /// [rest of string was truncated]&quot;;.
-        /// </summary>=
+        /// </summary>
+        
         /// <summary>
         ///   Looks up a localized string similar to &lt;level&gt;
         ///	&lt;block&gt;
@@ -642,6 +645,7 @@ internal static System.Drawing.Bitmap toy_story_ball_down1 {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
