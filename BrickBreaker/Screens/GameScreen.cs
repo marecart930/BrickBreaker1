@@ -19,6 +19,8 @@ namespace BrickBreaker
     {
         #region global values
 
+       // public static SoundPlayer brickHit = new SoundPlayer();
+
         //player1 button control keys - DO NOT CHANGE
         Boolean leftArrowDown, rightArrowDown, spaceDown;
 
@@ -37,6 +39,8 @@ namespace BrickBreaker
         Stopwatch breakTimer = new Stopwatch();
         Stopwatch gravityTimer = new Stopwatch();
         Stopwatch extendTimer = new Stopwatch();
+
+        public static string level;
 
         public static bool breakthroughBool;
         public static bool gravityBool;
@@ -74,7 +78,14 @@ namespace BrickBreaker
         public GameScreen()
         {
             InitializeComponent();
+
+            //brickHit = Properties.Resources.brickHit;
+
             OnStart();
+
+            SoundPlayer paddleSound = new SoundPlayer(Properties.Resources.paddleHit);
+            SoundPlayer brickSound = new SoundPlayer(Properties.Resources.brickHit);
+
         }
 
         public void OnStart()
@@ -112,10 +123,8 @@ namespace BrickBreaker
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
             balls.Add(ball);
 
-
-
-
-            XmlReader reader = XmlReader.Create("Resources/firstLevel.xml");
+            // level variable
+            XmlReader reader = XmlReader.Create($"Resources/{level}.xml");
 
             while (reader.Read())
             {
@@ -253,7 +262,8 @@ namespace BrickBreaker
             foreach (Ball b in balls)
             {
                 b.PaddleCollision(paddle, extraSpeed);
-            }
+
+             }
 
             // Check if ball has collided with any blocks
             foreach (Block b in blocks)
@@ -440,8 +450,9 @@ namespace BrickBreaker
             breakthroughBool = false;
 
             // Goes to the game over screen
+            
             Form form = this.FindForm();
-            MenuScreen ps = new MenuScreen();
+            Screens.EndScreen ps = new Screens.EndScreen();
 
             ps.Location = new Point((form.Width - ps.Width) / 2, (form.Height - ps.Height) / 2);
 

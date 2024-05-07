@@ -44,6 +44,7 @@
             this.pictureBox1.Size = new System.Drawing.Size(550, 342);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // exitButton
             // 
@@ -58,6 +59,7 @@
             this.exitButton.TabIndex = 3;
             this.exitButton.Text = "Exit to Menu";
             this.exitButton.UseVisualStyleBackColor = false;
+            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
             // playButton
             // 
@@ -74,6 +76,7 @@
             this.playButton.TabIndex = 2;
             this.playButton.Text = "Play Again";
             this.playButton.UseVisualStyleBackColor = false;
+            this.playButton.Click += new System.EventHandler(this.playButton_Click);
             // 
             // EndScreen
             // 
