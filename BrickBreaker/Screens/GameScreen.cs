@@ -26,6 +26,11 @@ namespace BrickBreaker
         Image rcCarLeft = Properties.Resources.RC_top_left;
         Image rcCarRight = Properties.Resources.RC_top_right;
         Image ballig = Properties.Resources.toy_story_ball_down1;
+        Image breakthroughimage = Properties.Resources.breakthrough___Copy;
+        Image healthimage = Properties.Resources.Health;
+        Image gravityimage = Properties.Resources.Gravity;
+        Image extendedpadleimage = Properties.Resources.extended_paddle;
+        Image multiballimage = Properties.Resources.multiball;
 
         public static int width;
         public static int height;
@@ -434,32 +439,31 @@ namespace BrickBreaker
             if (7 < Convert.ToDouble(gravityTimer.ElapsedMilliseconds / 1000))
             {
 
+            }
+            //speeding up the ball every 5 seconds
+            counter++;
+            if (counter % 5000 == 0)
+            {
+                extraSpeed++;
+            }
 
-                //speeding up the ball every 5 seconds
-                counter++;
-                if (counter % 5000 == 0)
+            if (counter % counterInterval == 0)
+            {
+                foreach (Block b in blocks)
                 {
-                    extraSpeed++;
-                }
-
-                if (counter % counterInterval == 0)
-                {
-                    foreach (Block b in blocks)
+                    b.y += 10;
+                    if (b.y >= paddle.y)
                     {
-                        b.y += 10;
-                        if (b.y >= paddle.y)
-                        {
-                            gameTimer.Enabled = false;
-                            OnEnd();
-                            break;
-                        }
+                        gameTimer.Enabled = false;
+                        OnEnd();
+                        break;
                     }
                 }
-                #endregion
-
-                //redraw the screen
-                Refresh();
             }
+
+            #endregion
+            //redraw the screen
+            Refresh();
         }
         public void OnEnd()
         {
@@ -561,19 +565,19 @@ namespace BrickBreaker
                 switch (p.type)
                 {
                     case "Breakthrough":
-                        e.Graphics.FillRectangle(breakThrough, p.x, p.y, Powers.powerupSize, Powers.powerupSize);
+                        e.Graphics.DrawImage(breakthroughimage, p.x, p.y, Powers.powerupSize, Powers.powerupSize);
                         break;
                     case "Gravity":
-                        e.Graphics.FillRectangle(gravity, p.x, p.y, Powers.powerupSize, Powers.powerupSize);
+                        e.Graphics.DrawImage(gravityimage, p.x, p.y, Powers.powerupSize, Powers.powerupSize);
                         break;
                     case "Health":
-                        e.Graphics.FillRectangle(health, p.x, p.y, Powers.powerupSize, Powers.powerupSize);
+                        e.Graphics.DrawImage(healthimage, p.x, p.y, Powers.powerupSize, Powers.powerupSize);
                         break;
                     case "MultiBall":
-                        e.Graphics.FillRectangle(multiBall, p.x, p.y, Powers.powerupSize, Powers.powerupSize);
+                        e.Graphics.DrawImage(multiballimage, p.x, p.y, Powers.powerupSize, Powers.powerupSize);
                         break;
                     case "ExtendPaddle":
-                        e.Graphics.FillRectangle(extendPaddle, p.x, p.y, Powers.powerupSize, Powers.powerupSize);
+                        e.Graphics.DrawImage(extendedpadleimage, p.x, p.y, Powers.powerupSize, Powers.powerupSize);
                         break;
                 }
             }
