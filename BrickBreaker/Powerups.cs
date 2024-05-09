@@ -38,7 +38,6 @@ namespace BrickBreaker
             {
                 case 1:
                     type = "Breakthrough";
-
                     break;
                 case 2:
                     type = "Gravity";

@@ -6,10 +6,10 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
-using System.Windows.Forms
-using System.Xml;
-using BrickBreaker.Screens;
+using System.Windows.Forms;
 using System.Media;
+using System.Xml;
+using System.Diagnostics;
 using System.Windows.Forms.Automation;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
@@ -29,11 +29,6 @@ namespace BrickBreaker
         Image rcCarLeft = Properties.Resources.RC_top_left;
         Image rcCarRight = Properties.Resources.RC_top_right;
         Image ballig = Properties.Resources.toy_story_ball_down1;
-        Image breakthroughimage = Properties.Resources.breakthrough___Copy;
-        Image healthimage = Properties.Resources.Health;
-        Image gravityimage = Properties.Resources.Gravity;
-        Image extendedpadleimage = Properties.Resources.extended_paddle;
-        Image multiballimage = Properties.Resources.multiball;
 
         public static int width;
         public static int height;
@@ -548,7 +543,6 @@ namespace BrickBreaker
                 }
             }
 
-            #endregion
             //redraw the screen
             Refresh();
         }
@@ -651,19 +645,19 @@ namespace BrickBreaker
                 switch (p.type)
                 {
                     case "Breakthrough":
-                        e.Graphics.DrawImage(breakthroughimage, p.x, p.y, Powers.powerupSize, Powers.powerupSize);
+                        e.Graphics.FillRectangle(breakThrough, p.x, p.y, Powers.powerupSize, Powers.powerupSize);
                         break;
                     case "Gravity":
-                        e.Graphics.DrawImage(gravityimage, p.x, p.y, Powers.powerupSize, Powers.powerupSize);
+                        e.Graphics.FillRectangle(gravity, p.x, p.y, Powers.powerupSize, Powers.powerupSize);
                         break;
                     case "Health":
-                        e.Graphics.DrawImage(healthimage, p.x, p.y, Powers.powerupSize, Powers.powerupSize);
+                        e.Graphics.FillRectangle(health, p.x, p.y, Powers.powerupSize, Powers.powerupSize);
                         break;
                     case "MultiBall":
-                        e.Graphics.DrawImage(multiballimage, p.x, p.y, Powers.powerupSize, Powers.powerupSize);
+                        e.Graphics.FillRectangle(multiBall, p.x, p.y, Powers.powerupSize, Powers.powerupSize);
                         break;
                     case "ExtendPaddle":
-                        e.Graphics.DrawImage(extendedpadleimage, p.x, p.y, Powers.powerupSize, Powers.powerupSize);
+                        e.Graphics.FillRectangle(extendPaddle, p.x, p.y, Powers.powerupSize, Powers.powerupSize);
                         break;
                 }
             }
