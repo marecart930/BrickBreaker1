@@ -79,6 +79,13 @@ namespace BrickBreaker
         SolidBrush extendPaddle = new SolidBrush(Color.Yellow);
         SolidBrush health = new SolidBrush(Color.Red);
 
+        //powerup images
+        Image gravityimage = Properties.Resources.Gravity;
+        Image healthimage = Properties.Resources.Health;
+        Image multiballimage = Properties.Resources.multiball;
+        Image extendedpadleimage = Properties.Resources.extended_paddle;
+
+
         //declare random
         public static Random r = new Random();
         #endregion
@@ -136,7 +143,7 @@ namespace BrickBreaker
             balls.Add(ball);
 
 
-            XmlReader reader = XmlReader.Create("Resources/firstLevel.xml");
+            XmlReader reader = XmlReader.Create($"Resources/{level}.xml");
 
             while (reader.Read())
             {
