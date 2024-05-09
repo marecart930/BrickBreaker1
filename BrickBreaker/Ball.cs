@@ -39,10 +39,10 @@ namespace BrickBreaker
         public bool BlockCollision(Block b)
         {
             //creating temporary rectangles
-            Rectangle blockRecLeft = new Rectangle(b.x - 1, b.y, 1, b.height);
-            Rectangle blockRecRight = new Rectangle(b.x + b.width, b.y, 1, b.height);
+            Rectangle blockRecLeft = new Rectangle(b.x - 1, b.y, 2, b.height);
+            Rectangle blockRecRight = new Rectangle(b.x + b.width - 1, b.y, 2, b.height);
             Rectangle blockRecMiddleBottom = new Rectangle(b.x + 2, b.y + b.height, b.width - 4, 1);
-            Rectangle blockRecMiddleTop = new Rectangle(b.x + 2, b.y - 1, b.width - 2, 1);
+            Rectangle blockRecMiddleTop = new Rectangle(b.x + 2, b.y - 1, b.width - 4, 1);
             Rectangle ballRec = new Rectangle(x, Convert.ToInt32(y), size, size);
 
             //checking for intersection with each part of the blocks
