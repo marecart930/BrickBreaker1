@@ -298,11 +298,9 @@
   <ItemGroup>
     <None Include="Resources\Randy Newman - You%27ve Got A Friend In Me %28minus 2%29.wav" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\image.png" />
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\image.png" />
+	</ItemGroup>
   <ItemGroup>
     <None Include="Resources\thirdLevel.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
