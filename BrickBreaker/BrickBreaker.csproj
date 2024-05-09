@@ -298,9 +298,9 @@
   <ItemGroup>
     <None Include="Resources\Randy Newman - You%27ve Got A Friend In Me %28minus 2%29.wav" />
   </ItemGroup>
-	<ItemGroup>
-		<None Include="Resources\image.png" />
-	</ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\image.png" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\thirdLevel.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -320,6 +320,21 @@
     <None Include="Resources\sixthLevel.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Health.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\multiball.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\breakthrough - Copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\extended paddle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Gravity.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
