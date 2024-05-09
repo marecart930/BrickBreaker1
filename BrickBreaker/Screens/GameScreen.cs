@@ -116,7 +116,7 @@ namespace BrickBreaker
             int paddleHeight = 105;
             int paddleX = ((this.Width / 2) - (paddleWidth / 2));
             int paddleY = (this.Height - paddleHeight) - 70;
-            int paddleSpeed = 10;
+            int paddleSpeed = 5;
             paddle = new Paddle(paddleX, paddleY, paddleWidth, paddleHeight, paddleSpeed, Color.White);
 
             // setup starting ball values
@@ -158,6 +158,8 @@ namespace BrickBreaker
             rc_car.Y = paddle.y;
             rc_car.Width = paddle.width;
             rc_car.Height = paddle.height;
+
+            counterInterval = 200;
 
             if (difficulty == 0)
             {
@@ -588,7 +590,7 @@ namespace BrickBreaker
                 {
                     e.Graphics.DrawImage(E, b.x, b.y);
                 }
-                else
+                else if (b.hp > 5)
                 {
                     e.Graphics.DrawImage(Empty, b.x, b.y);
                 }
@@ -625,7 +627,7 @@ namespace BrickBreaker
             // Draws balls
             foreach (Ball b in balls)
             {
-                e.Graphics.DrawImage(ballig, b.x, b.y);
+                e.Graphics.DrawImage(ballig, b.x, Convert.ToInt32(b.y));
             }
 
             //Draw hearts
