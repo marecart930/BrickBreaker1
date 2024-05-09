@@ -1,0 +1,326 @@
+﻿<level>
+	<block>
+		<x>738</x>
+		<y>106</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>692</x>
+		<y>106</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>738</x>
+		<y>60</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>692</x>
+		<y>60</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>646</x>
+		<y>106</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>646</x>
+		<y>60</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>738</x>
+		<y>12</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>692</x>
+		<y>12</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>646</x>
+		<y>12</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>150</x>
+		<y>301</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>104</x>
+		<y>301</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>150</x>
+		<y>255</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>104</x>
+		<y>255</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>58</x>
+		<y>301</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>58</x>
+		<y>255</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>150</x>
+		<y>207</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>104</x>
+		<y>207</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>58</x>
+		<y>207</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>541</x>
+		<y>114</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>495</x>
+		<y>114</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>541</x>
+		<y>68</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>495</x>
+		<y>68</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>449</x>
+		<y>114</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>449</x>
+		<y>68</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>541</x>
+		<y>20</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>495</x>
+		<y>20</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>449</x>
+		<y>20</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>692</x>
+		<y>284</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>646</x>
+		<y>284</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>692</x>
+		<y>238</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>646</x>
+		<y>238</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>600</x>
+		<y>284</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>600</x>
+		<y>238</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>692</x>
+		<y>190</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>646</x>
+		<y>190</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>600</x>
+		<y>190</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>346</x>
+		<y>208</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>300</x>
+		<y>208</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>346</x>
+		<y>162</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>300</x>
+		<y>162</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>254</x>
+		<y>208</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>254</x>
+		<y>162</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>346</x>
+		<y>114</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>300</x>
+		<y>114</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>254</x>
+		<y>114</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>104</x>
+		<y>106</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>58</x>
+		<y>106</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>104</x>
+		<y>60</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>58</x>
+		<y>60</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>12</x>
+		<y>106</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>12</x>
+		<y>60</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>104</x>
+		<y>12</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>58</x>
+		<y>12</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+	<block>
+		<x>12</x>
+		<y>12</y>
+		<hp>3</hp>
+		<colour>Color [YellowGreen]</colour>
+	</block>
+</level>
