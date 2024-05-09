@@ -653,16 +653,16 @@ namespace BrickBreaker
                         e.Graphics.DrawImage(breakthroughimage, p.x, p.y, Powers.powerupSize, Powers.powerupSize);
                         break;
                     case "Gravity":
-                        e.Graphics.DrawImage(breakthroughimage, p.x, p.y, Powers.powerupSize, Powers.powerupSize);
+                        e.Graphics.DrawImage(gravityimage, p.x, p.y, Powers.powerupSize, Powers.powerupSize);
                         break;
                     case "Health":
-                        e.Graphics.DrawImage(breakthroughimage, p.x, p.y, Powers.powerupSize, Powers.powerupSize);
+                        e.Graphics.DrawImage(healthimage, p.x, p.y, Powers.powerupSize, Powers.powerupSize);
                         break;
                     case "MultiBall":
-                        e.Graphics.DrawImage(breakthroughimage, p.x, p.y, Powers.powerupSize, Powers.powerupSize);
+                        e.Graphics.DrawImage(multiballimage, p.x, p.y, Powers.powerupSize, Powers.powerupSize);
                         break;
                     case "ExtendPaddle":
-                        e.Graphics.DrawImage(breakthroughimage, p.x, p.y, Powers.powerupSize, Powers.powerupSize);
+                        e.Graphics.DrawImage(extendedpadleimage, p.x, p.y, Powers.powerupSize, Powers.powerupSize);
                         break;
                 }
             }
