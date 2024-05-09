@@ -132,7 +132,7 @@ namespace BrickBreaker
             int paddleHeight = 105;
             int paddleX = ((this.Width / 2) - (paddleWidth / 2));
             int paddleY = (this.Height - paddleHeight) - 70;
-            int paddleSpeed = 7;
+            int paddleSpeed = 5;
             paddle = new Paddle(paddleX, paddleY, paddleWidth, paddleHeight, paddleSpeed, Color.White);
 
             // setup starting ball values
@@ -174,6 +174,8 @@ namespace BrickBreaker
             rc_car.Y = paddle.y;
             rc_car.Width = paddle.width;
             rc_car.Height = paddle.height;
+
+            counterInterval = 200;
 
             if (difficulty == 0)
             {
