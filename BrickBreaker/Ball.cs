@@ -35,6 +35,15 @@ namespace BrickBreaker
             {
                 ySpeed -= .2;
             }
+
+            //try to remove the possibility of the ball being stuck at the top of the screen
+            for (int i = 0; i < GameScreen.balls.Count; i++)
+            {
+                if (GameScreen.balls[i].ySpeed <= 1 && GameScreen.balls[i].y < 100)
+                {
+                    GameScreen.balls[i].ySpeed = GameScreen.r.Next(-5, -2);
+                }
+            }
         }
         public bool BlockCollision(Block b)
         {

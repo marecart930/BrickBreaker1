@@ -43,7 +43,7 @@ namespace BrickBreaker
         Paddle paddle;
         Ball ball;
 
-        List<Ball> balls = new List<Ball>();
+        public static List<Ball> balls = new List<Ball>();
 
         // lists for powerups
         List<Powers> powerList = new List<Powers>();
