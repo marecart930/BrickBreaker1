@@ -170,7 +170,7 @@ namespace BrickBreaker
             rc_car.Width = paddle.width;
             rc_car.Height = paddle.height;
 
-            counterInterval = 200;
+            counterInterval = 500;
 
             if (difficulty == 0)
             {
@@ -560,7 +560,7 @@ namespace BrickBreaker
 
             // Goes to the game over screen
             
-            Form form = this.FindForm();
+            Form form = this.FindForm();    
             Screens.EndScreen ps = new Screens.EndScreen();
 
             ps.Location = new Point((form.Width - ps.Width) / 2, (form.Height - ps.Height) / 2);
