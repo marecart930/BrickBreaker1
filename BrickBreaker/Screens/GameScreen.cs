@@ -165,6 +165,8 @@ namespace BrickBreaker
             rc_car.Width = paddle.width;
             rc_car.Height = paddle.height;
 
+            counterInterval = 500;
+
             if (difficulty == 0)
             {
                 counterInterval = 100;
