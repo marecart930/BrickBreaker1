@@ -590,18 +590,19 @@ namespace BrickBreaker
             breakthroughBool = false;
             extendBool = false;
 
+            Form form = this.FindForm();
             // Goes to the game over screen
             if (blocks.Count != 0)
             {
-                Form form = this.FindForm();
-                EndScreen ps = new EndScreen();
-                form.Controls.Add(ps);
-                ps.Location = new Point((form.Width - ps.Width) / 2, (form.Height - ps.Height) / 2);
+
+                EndScreen es = new EndScreen();
+                form.Controls.Add(es);
+                es.Location = new Point((form.Width - es.Width) / 2, (form.Height - es.Height) / 2);
                 form.Controls.Remove(this);
             }
             else
             {
-                Form form = this.FindForm();
+                //Form form = this.FindForm();
                 MenuScreen mm = new MenuScreen();
                 form.Controls.Add(mm);
                 mm.Location = new Point((form.Width - mm.Width) / 2, (form.Height - mm.Height) / 2);
@@ -642,8 +643,8 @@ namespace BrickBreaker
             }
             else
             {
-                paddle.height = 105 + 40;
-                paddle.width = 80;
+                paddle.height = 105;
+                paddle.width = 80 + 40;
                 e.Graphics.DrawImage(rcCarTop, paddle.x, paddle.y, paddle.width, paddle.height);
             }
 
