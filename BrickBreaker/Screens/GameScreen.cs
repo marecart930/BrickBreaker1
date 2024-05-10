@@ -643,8 +643,16 @@ namespace BrickBreaker
             }
             else
             {
-                paddle.height = 105;
-                paddle.width = 80 + 40;
+                if (extendBool == true)
+                {
+                    paddle.width = 80 + 40;
+                }
+                else
+                {
+                    paddle.height = 105;
+                    paddle.width = 80;
+
+                }
                 e.Graphics.DrawImage(rcCarTop, paddle.x, paddle.y, paddle.width, paddle.height);
             }
 
