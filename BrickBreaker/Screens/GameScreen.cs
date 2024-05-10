@@ -138,7 +138,6 @@ namespace BrickBreaker
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
             balls.Add(ball);
 
-
             XmlReader reader = XmlReader.Create($"Resources/{level}.xml");
 
             while (reader.Read())
