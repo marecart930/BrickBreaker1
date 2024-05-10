@@ -11,6 +11,7 @@ namespace BrickBreaker
         public int x, xSpeed, size;
         public double ySpeed, y;
         public Color colour;
+        int counter = 0;
 
         public static Random rand = new Random();
 
@@ -28,48 +29,39 @@ namespace BrickBreaker
         {
             x = x + xSpeed;
             y = y + ySpeed;
-            
 
+            //ramping up the speed when gravity powerup is active
             if (GameScreen.gravityBool == true)
             {
                 ySpeed -= .2;
             }
-
         }
         public bool BlockCollision(Block b)
         {
             //creating temporary rectangles
-            Rectangle blockRecLeft = new Rectangle(b.x + 1, b.y, 2, b.height); //amoguss //blow up more
+            Rectangle blockRecLeft = new Rectangle(b.x - 1, b.y, 2, b.height);
             Rectangle blockRecRight = new Rectangle(b.x + b.width - 1, b.y, 2, b.height);
-            Rectangle blockRecMiddle = new Rectangle(b.x - 1, b.y - 1, b.width - 2, b.height + 2);
+            Rectangle blockRecMiddleBottom = new Rectangle(b.x + 2, b.y + b.height, b.width - 4, 1);
+            Rectangle blockRecMiddleTop = new Rectangle(b.x + 2, b.y - 1, b.width - 4, 1);
             Rectangle ballRec = new Rectangle(x, Convert.ToInt32(y), size, size);
 
             //checking for intersection with each part of the blocks
-            if (ballRec.IntersectsWith(blockRecMiddle))
+            if ((ballRec.IntersectsWith(blockRecMiddleBottom) || ballRec.IntersectsWith(blockRecMiddleTop)) && (x > b.x - size + 1 || x < b.x + b.width + size - 1) /* && (y < b.y - size + 1 || y > b.y + b.height + size - 1) */)
             {
-                ySpeed *= -1;
-
-                if (GameScreen.breakthroughBool == false)
-                {
-                    xSpeed *= -1;
-                }
-                return true;
-            }
-            else if (ballRec.IntersectsWith(blockRecLeft) && xSpeed > 0)
-            {
-                if (GameScreen.breakthroughBool == false)
-                {
-                    xSpeed *= -1;
-                }
-
-                return true;
-            }
-            else if (ballRec.IntersectsWith(blockRecRight) && xSpeed < 0)
-            {
-                xSpeed *= -1;
+                //flipping the velocityy of the ball only if the breakthrough powerup is not active
                 if (GameScreen.breakthroughBool == false)
                 {
                     ySpeed *= -1;
+                }
+
+                return true;
+            }
+            else if ((ballRec.IntersectsWith(blockRecLeft) || ballRec.IntersectsWith(blockRecRight)) && (y > b.y - size + 1 || y < b.y + b.height + size - 1) /* && (x < b.x - size || x > b.x + b.width + size) */)
+            {
+                //flipping the velocityy of the ball only if the breakthrough powerup is not active
+                if (GameScreen.breakthroughBool == false)
+                {
+                    xSpeed *= -1;
                 }
 
                 return true;
@@ -82,58 +74,69 @@ namespace BrickBreaker
         public void PaddleCollision(Paddle p, int extraSpeed)
         {
             //creating temporary rectangles
-            Rectangle blockRecLeft = new Rectangle(p.x, p.y + 1, 2, p.height);
-            Rectangle blockRecRight = new Rectangle(p.x + p.width - 1, p.y + 1, 2, p.height);
-            Rectangle blockRecMiddle = new Rectangle(p.x + 1, p.y, p.width - 1, p.height + 2);
+            Rectangle blockRecLeft = new Rectangle(p.x - 5, p.y + 2, 10, p.height - 4);
+            Rectangle blockRecRight = new Rectangle(p.x + p.width - 5, p.y - 2, 10, p.height - 4);
+            Rectangle blockRecMiddleBottom = new Rectangle(p.x + 2, p.y + p.height, p.width - 4, 1);
+            Rectangle blockRecMiddleTop = new Rectangle(p.x + 2, p.y - 1, p.width - 4, 1);
             Rectangle ballRec = new Rectangle(x, Convert.ToInt32(y), size, size);
 
-            int collisonPoint = 0;
+            int collisonPoint;
+            bool checkCollison = false;
 
             //checking for intersection between the ball and top of the block
-            if (ballRec.IntersectsWith(blockRecMiddle))
+            if ((ballRec.IntersectsWith(blockRecMiddleBottom) || ballRec.IntersectsWith(blockRecMiddleTop)) && (x > p.x - size + 1 || x < p.x + p.width + size - 1) /* && (y < p.y - size + 1 || y > p.y + p.height + size - 1) */)
             {
                 //resetting the position of the ball to the top of the paddle and checking where it hit the paddle
-                y = p.y - size;
                 collisonPoint = x - p.x;
-                //changing the x and y speed relative to where it hits the paddle (closer to the edge means shallower angle)
-                if (collisonPoint < 5 || collisonPoint > 55)
+
+                //changing the x and y relative to where it hits the paddle (closer to the edge means shallower angle)
+                if (collisonPoint < 5 || collisonPoint > 60)
                 {
                     if (xSpeed < 0)
                     {
-                        xSpeed = -9 - extraSpeed;
-                        ySpeed = -5 - extraSpeed;
+                        xSpeed = -5 - extraSpeed;
+                        ySpeed = -2 - extraSpeed;
                     }
                     else
                     {
-                        xSpeed = 9 + extraSpeed;
-                        ySpeed = -5 - extraSpeed;
+                        xSpeed = 5 + extraSpeed;
+                        ySpeed = -2 - extraSpeed;
                     }
                 }
-                else if (collisonPoint > 5 && collisonPoint < 55)
+                else if (collisonPoint > 5 && collisonPoint < 50)
                 {
                     if (xSpeed < 0)
                     {
-                        xSpeed = -8 - extraSpeed;
-                        ySpeed = -6 - extraSpeed;
+                        xSpeed = -4 - extraSpeed;
+                        ySpeed = -3 - extraSpeed;
                     }
                     else
                     {
-                        xSpeed = 8 + extraSpeed;
-                        ySpeed = -6 - extraSpeed;
+                        xSpeed = 4 + extraSpeed;
+                        ySpeed = -3 - extraSpeed;
                     }
                 }
             }
 
-            //checking if the ball intersects with the sides of the paddle
-            if (ballRec.IntersectsWith(blockRecLeft) && xSpeed > 0)
+            if (x > p.x && x < p.x + p.width && y > p.y && y < p.y + p.width)
             {
-                y = p.y - size;
-                xSpeed *= -1;
+                checkCollison = true;
             }
-            else if (ballRec.IntersectsWith(blockRecRight) && xSpeed < 0)
+            //checking if the ball intersects with the sides of the paddle
+            if (((ballRec.IntersectsWith(blockRecLeft) || ballRec.IntersectsWith(blockRecRight)) && (y > p.y - size + 1 || y < p.y + p.height + size - 1)) || checkCollison/* && (x < p.x - size || x > p.x + p.width + size) */)
             {
-                y = p.y - size;
+                if (counter % 20 == 0)
+                if (xSpeed > 0)
+                {
+                    x = p.x;
+                }
+                else if (xSpeed < 0)
+                {
+                    x = p.x + p.width;
+                }
                 xSpeed *= -1;
+                checkCollison = false;
+                counter++;
             }
         }
 
