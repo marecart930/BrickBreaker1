@@ -7,11 +7,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Media;
 using System.Xml;
-using System.Diagnostics;
-using System.Windows.Forms.Automation;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
+using BrickBreaker.Screens;
 
 namespace BrickBreaker
 {
@@ -29,6 +26,12 @@ namespace BrickBreaker
         Image rcCarLeft = Properties.Resources.RC_top_left;
         Image rcCarRight = Properties.Resources.RC_top_right;
         Image ballig = Properties.Resources.toy_story_ball_down1;
+        //powerup images
+        Image gravityimage = Properties.Resources.Gravity;
+        Image healthimage = Properties.Resources.Health;
+        Image multiballimage = Properties.Resources.multiball;
+        Image extendedpadleimage = Properties.Resources.extended_paddle;
+        Image breakthroughimage = Properties.Resources.breakthrough___Copy;
 
         public static int width;
         public static int height;
@@ -78,13 +81,6 @@ namespace BrickBreaker
         SolidBrush gravity = new SolidBrush(Color.Purple);
         SolidBrush extendPaddle = new SolidBrush(Color.Yellow);
         SolidBrush health = new SolidBrush(Color.Red);
-
-        //powerup images
-        Image gravityimage = Properties.Resources.Gravity;
-        Image healthimage = Properties.Resources.Health;
-        Image multiballimage = Properties.Resources.multiball;
-        Image extendedpadleimage = Properties.Resources.extended_paddle;
-
 
         //declare random
         public static Random r = new Random();
@@ -141,7 +137,6 @@ namespace BrickBreaker
 
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
             balls.Add(ball);
-
 
             XmlReader reader = XmlReader.Create($"Resources/{level}.xml");
 
@@ -596,20 +591,29 @@ namespace BrickBreaker
             extendBool = false;
 
             // Goes to the game over screen
-            Form form = this.FindForm();
-            MenuScreen ps = new MenuScreen();
-
-            ps.Location = new Point((form.Width - ps.Width) / 2, (form.Height - ps.Height) / 2);
-
-            form.Controls.Add(ps);
-            form.Controls.Remove(this);
+            if (blocks.Count != 0)
+            {
+                Form form = this.FindForm();
+                EndScreen ps = new EndScreen();
+                form.Controls.Add(ps);
+                ps.Location = new Point((form.Width - ps.Width) / 2, (form.Height - ps.Height) / 2);
+                form.Controls.Remove(this);
+            }
+            else
+            {
+                Form form = this.FindForm();
+                MenuScreen mm = new MenuScreen();
+                form.Controls.Add(mm);
+                mm.Location = new Point((form.Width - mm.Width) / 2, (form.Height - mm.Height) / 2);
+                form.Controls.Remove(this);
+            }
         }
 
         public void GameScreen_Paint(object sender, PaintEventArgs e)
         {
             // Draw paddle (rcCar)
             //draw paddle outline
-            e.Graphics.DrawRectangle(outlineBrush, paddle.x, paddle.y, paddle.width, paddle.height);
+            //e.Graphics.DrawRectangle(outlineBrush, paddle.x, paddle.y, paddle.width, paddle.height);
             if (leftArrowDown == true)
             {
                 if (extendBool == true)
@@ -638,7 +642,7 @@ namespace BrickBreaker
             }
             else
             {
-                paddle.height = 105;
+                paddle.height = 105 + 40;
                 paddle.width = 80;
                 e.Graphics.DrawImage(rcCarTop, paddle.x, paddle.y, paddle.width, paddle.height);
             }
@@ -683,7 +687,7 @@ namespace BrickBreaker
                 switch (p.type)
                 {
                     case "Breakthrough":
-                        e.Graphics.FillRectangle(breakThrough, p.x, p.y, Powers.powerupSize, Powers.powerupSize);
+                        e.Graphics.DrawImage(breakthroughimage, p.x, p.y, Powers.powerupSize, Powers.powerupSize);
                         break;
                     case "Gravity":
                         e.Graphics.DrawImage(gravityimage, p.x, p.y, Powers.powerupSize, Powers.powerupSize);
