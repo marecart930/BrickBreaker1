@@ -110,6 +110,7 @@ namespace BrickBreaker
             width = this.Width;
             // make height and width variables
 
+            pressStartLabel.Visible = true;
 
             //set life counter
             lives = 3;
@@ -137,8 +138,8 @@ namespace BrickBreaker
             int ballY = this.Height - paddle.height - 80;
 
             // Creates a new ball
-            int xSpeed = 8;
-            int ySpeed = 8;
+            int xSpeed = 0;
+            int ySpeed = 0;
             int ballSize = 20;
 
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
@@ -602,6 +603,7 @@ namespace BrickBreaker
             breakthroughBool = false;
             extendBool = false;
             balls.Clear();
+
             // Goes to the game over screen
             Form form = this.FindForm();
             EndScreen ps = new EndScreen();

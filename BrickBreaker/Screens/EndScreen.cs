@@ -28,7 +28,7 @@ namespace BrickBreaker.Screens
         private void playButton_Click(object sender, EventArgs e)
         {
             // Goes to the game screen
-            EndScreen gs = new EndScreen();
+            GameScreen gs = new GameScreen();
             Form form = this.FindForm();
 
             form.Controls.Add(gs);
