@@ -62,6 +62,7 @@
             this.Location = new System.Drawing.Point(0, 102);
             this.Name = "GameScreen";
             this.Size = new System.Drawing.Size(854, 542);
+            this.Load += new System.EventHandler(this.GameScreen_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.GameScreen_Paint);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.GameScreen_KeyUp);
             this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.GameScreen_PreviewKeyDown);
