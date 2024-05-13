@@ -33,13 +33,13 @@ namespace BrickBreaker
             //ramping up the speed when gravity powerup is active
             if (GameScreen.gravityBool == true)
             {
-                ySpeed -= .2;
+                ySpeed -= .1;
             }
 
             //try to remove the possibility of the ball being stuck at the top of the screen
             for (int i = 0; i < GameScreen.balls.Count; i++)
             {
-                if (GameScreen.balls[i].ySpeed <= 1 && GameScreen.balls[i].y < 100)
+                if (Math.Abs(GameScreen.balls[i].ySpeed) <= 1 && GameScreen.balls[i].y < 100)
                 {
                     GameScreen.balls[i].ySpeed = GameScreen.r.Next(-5, -2);
                 }
@@ -88,6 +88,7 @@ namespace BrickBreaker
             Rectangle blockRecMiddleBottom = new Rectangle(p.x + 2, p.y + p.height, p.width - 4, 1);
             Rectangle blockRecMiddleTop = new Rectangle(p.x + 2, p.y - 1, p.width - 4, 1);
             Rectangle ballRec = new Rectangle(x, Convert.ToInt32(y), size, size);
+            Rectangle paddleRec = new Rectangle(p.x, p.y, p.width, p.height);
 
             int collisonPoint;
             bool checkCollison = false;
@@ -127,25 +128,23 @@ namespace BrickBreaker
                 }
             }
 
-            if (x > p.x && x < p.x + p.width && y > p.y && y < p.y + p.width)
+            //failsafe to check collisons
+            if (x < p.x + 1 && x > p.x + p.width - 1 && y > p.y && y < p.y + p.width)
             {
                 checkCollison = true;
             }
+
             //checking if the ball intersects with the sides of the paddle
-            if (((ballRec.IntersectsWith(blockRecLeft) || ballRec.IntersectsWith(blockRecRight)) && (y > p.y - size + 1 || y < p.y + p.height + size - 1)) || checkCollison/* && (x < p.x - size || x > p.x + p.width + size) */)
+            if (((ballRec.IntersectsWith(blockRecLeft) || ballRec.IntersectsWith(blockRecRight)) /*&& (y > p.y - size + 1 || y < p.y + p.height + size - 1))*/ || checkCollison/* && (x < p.x - size || x > p.x + p.width + size) */))
             {
-                if (counter % 20 == 0)
-                if (xSpeed > 0)
-                {
-                    x = p.x;
-                }
-                else if (xSpeed < 0)
-                {
-                    x = p.x + p.width;
-                }
                 xSpeed *= -1;
-                checkCollison = false;
-                counter++;
+            }
+
+            //failsafe if ball goes inside paddle
+            if (ballRec.IntersectsWith(paddleRec))
+            {
+                x = p.x + (p.width / 2);
+                y = p.y - size;
             }
         }
 
@@ -166,7 +165,7 @@ namespace BrickBreaker
             // Collision with top wall
             if (y <= 2)
             {
-                y = 0;
+                //y = 0;
                 ySpeed *= -1;
             }
         }

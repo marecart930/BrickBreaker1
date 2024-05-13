@@ -44,9 +44,9 @@
             this.pressStartLabel.BackColor = System.Drawing.Color.Transparent;
             this.pressStartLabel.Font = new System.Drawing.Font("Microsoft YaHei", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pressStartLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.pressStartLabel.Location = new System.Drawing.Point(0, 283);
+            this.pressStartLabel.Location = new System.Drawing.Point(259, 356);
             this.pressStartLabel.Name = "pressStartLabel";
-            this.pressStartLabel.Size = new System.Drawing.Size(854, 64);
+            this.pressStartLabel.Size = new System.Drawing.Size(348, 64);
             this.pressStartLabel.TabIndex = 0;
             this.pressStartLabel.Text = "Press Space to Launch Ball";
             this.pressStartLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
