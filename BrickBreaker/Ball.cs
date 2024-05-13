@@ -128,6 +128,7 @@ namespace BrickBreaker
                 }
             }
 
+            //failsafe to check collisons
             if (x < p.x + 1 && x > p.x + p.width - 1 && y > p.y && y < p.y + p.width)
             {
                 checkCollison = true;
@@ -139,6 +140,7 @@ namespace BrickBreaker
                 xSpeed *= -1;
             }
 
+            //failsafe if ball goes inside paddle
             if (ballRec.IntersectsWith(paddleRec))
             {
                 x = p.x + (p.width / 2);

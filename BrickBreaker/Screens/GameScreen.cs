@@ -121,8 +121,9 @@ namespace BrickBreaker
             //set all button presses to false.
             leftArrowDown = rightArrowDown = spaceDown = false;
 
-            //clear blocks list
+            //clear blocks and balls lists
             blocks.Clear();
+            balls.Clear();
 
             // setup starting paddle values and create paddle object
 
@@ -196,16 +197,19 @@ namespace BrickBreaker
                     //pausing
                     if(paused)
                     {
-                        paused = false;
-                        pressStartLabel.Text = "Press Space to Launch Ball";
-                        pressStartLabel.Visible = false;
+                        Application.Exit();
                     }
                     else
                     {
                         paused = true;
-                        pressStartLabel.Text = "Press ESC to Resume";
+                        pressStartLabel.Text = $"Press ESC to Exit\nPress Enter to Resume";
                         pressStartLabel.Visible = true;
                     }
+                    break;
+                case Keys.Enter:
+                    paused = false;
+                    pressStartLabel.Text = "Press Space to Launch Ball";
+                    pressStartLabel.Visible = false;
                     break;
                 default:
                     break;
