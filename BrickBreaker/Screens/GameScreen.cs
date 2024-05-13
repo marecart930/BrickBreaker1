@@ -172,20 +172,7 @@ namespace BrickBreaker
             rc_car.Width = paddle.width;
             rc_car.Height = paddle.height;
 
-            counterInterval = 500;
-
-            if (difficulty == 0)
-            {
-                counterInterval = 100;
-            }
-            else if (difficulty == 1)
-            {
-                counterInterval = 300;
-            }
-            else
-            {
-                counterInterval = 500;
-            }
+            counterInterval = 200;
 
             // start the game engine loop
             gameTimer.Enabled = true;
