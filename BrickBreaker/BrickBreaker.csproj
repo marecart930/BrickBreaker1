@@ -336,6 +336,30 @@
   <ItemGroup>
     <None Include="Resources\breakthrough - Copy.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TrashBackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\elevatorBackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sidsRoomBackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TruckBackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TrashBackground %281%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TruckBackground %281%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sidsRoomBackground %281%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\elevatorBackground %281%29.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

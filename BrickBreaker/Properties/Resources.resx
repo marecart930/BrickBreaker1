@@ -241,4 +241,16 @@
   <data name="multiball" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\multiball.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="elevatorBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\elevatorBackground.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sidsRoomBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sidsRoomBackground.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TrashBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TrashBackground.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TruckBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TruckBackground.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
