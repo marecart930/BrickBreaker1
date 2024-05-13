@@ -597,7 +597,6 @@ namespace BrickBreaker
             breakthroughBool = false;
             extendBool = false;
             balls.Clear();
-
             // Goes to the game over screen
             Form form = this.FindForm();
             EndScreen ps = new EndScreen();
@@ -639,8 +638,16 @@ namespace BrickBreaker
             }
             else
             {
-                paddle.height = 105 + 40;
-                paddle.width = 80;
+                if (extendBool == true)
+                {
+                    paddle.width = 80 + 40;
+                }
+                else
+                {
+                    paddle.height = 105;
+                    paddle.width = 80;
+
+                }
                 e.Graphics.DrawImage(rcCarTop, paddle.x, paddle.y, paddle.width, paddle.height);
             }
 
