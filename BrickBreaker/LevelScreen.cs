@@ -29,6 +29,8 @@ namespace BrickBreaker
             form.Controls.Remove(this);
 
             gs.Location = new Point((form.Width - gs.Width) / 2, (form.Height - gs.Height) / 2);
+            gs.BackgroundImage = Properties.Resources.andysRoom;
+            gs.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
@@ -43,6 +45,8 @@ namespace BrickBreaker
             form.Controls.Remove(this);
 
             gs.Location = new Point((form.Width - gs.Width) / 2, (form.Height - gs.Height) / 2);
+            gs.BackgroundImage = Properties.Resources.pizzaplanet_disney_ok_1523876897;
+            gs.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         private void levelBox3_Click(object sender, EventArgs e)
@@ -57,6 +61,8 @@ namespace BrickBreaker
             form.Controls.Remove(this);
 
             gs.Location = new Point((form.Width - gs.Width) / 2, (form.Height - gs.Height) / 2);
+            gs.BackgroundImage = Properties.Resources.clawMachine;
+            gs.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         private void levelBox4_Click(object sender, EventArgs e)
@@ -71,6 +77,9 @@ namespace BrickBreaker
             form.Controls.Remove(this);
 
             gs.Location = new Point((form.Width - gs.Width) / 2, (form.Height - gs.Height) / 2);
+
+            gs.BackgroundImage = Properties.Resources.venting;
+            gs.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         private void levelBox5_Click(object sender, EventArgs e)
@@ -85,6 +94,8 @@ namespace BrickBreaker
             form.Controls.Remove(this);
 
             gs.Location = new Point((form.Width - gs.Width) / 2, (form.Height - gs.Height) / 2);
+            gs.BackgroundImage = Properties.Resources.zergFight;
+            gs.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         private void levelBox6_Click(object sender, EventArgs e)
@@ -99,6 +110,8 @@ namespace BrickBreaker
             form.Controls.Remove(this);
 
             gs.Location = new Point((form.Width - gs.Width) / 2, (form.Height - gs.Height) / 2);
+            gs.BackgroundImage = Properties.Resources.sidsRoomBackground;
+            gs.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         private void levelBox7_Click(object sender, EventArgs e)
@@ -113,10 +126,12 @@ namespace BrickBreaker
             form.Controls.Remove(this);
 
             gs.Location = new Point((form.Width - gs.Width) / 2, (form.Height - gs.Height) / 2);
+            gs.BackgroundImage = Properties.Resources.TruckBackground;
         }
 
         private void levelBox8_Click(object sender, EventArgs e)
         {
+
             GameScreen.level = "eigthLevel";
 
             //go to gamescreen
@@ -127,6 +142,8 @@ namespace BrickBreaker
             form.Controls.Remove(this);
 
             gs.Location = new Point((form.Width - gs.Width) / 2, (form.Height - gs.Height) / 2);
+
+            gs.BackgroundImage = Properties.Resources.TrashBackground;
         }
 
         private void levelBox9_Click(object sender, EventArgs e)
@@ -141,6 +158,8 @@ namespace BrickBreaker
             form.Controls.Remove(this);
 
             gs.Location = new Point((form.Width - gs.Width) / 2, (form.Height - gs.Height) / 2);
+            gs.BackgroundImage = Properties.Resources.lotso;
+
         }
     }
 }

@@ -221,6 +221,16 @@ namespace BrickBreaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap elevatorBackground {
+            get {
+                object obj = ResourceManager.GetObject("elevatorBackground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap extended_paddle {
             get {
                 object obj = ResourceManager.GetObject("extended_paddle", resourceCulture);
@@ -577,6 +587,16 @@ namespace BrickBreaker.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sidsRoomBackground {
+            get {
+                object obj = ResourceManager.GetObject("sidsRoomBackground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;level&gt;
         ///	&lt;block&gt;
         ///		&lt;x&gt;362&lt;/x&gt;
@@ -712,9 +732,29 @@ namespace BrickBreaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap TrashBackground {
+            get {
+                object obj = ResourceManager.GetObject("TrashBackground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap truck {
             get {
                 object obj = ResourceManager.GetObject("truck", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TruckBackground {
+            get {
+                object obj = ResourceManager.GetObject("TruckBackground", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
