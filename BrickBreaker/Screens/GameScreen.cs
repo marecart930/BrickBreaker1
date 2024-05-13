@@ -99,6 +99,11 @@ namespace BrickBreaker
             OnStart();
         }
 
+        private void GameScreen_Load(object sender, EventArgs e)
+        {
+
+        }
+
         public void OnStart()
         {
             height = this.Height;
