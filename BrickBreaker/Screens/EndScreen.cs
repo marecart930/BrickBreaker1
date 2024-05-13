@@ -15,6 +15,14 @@ namespace BrickBreaker.Screens
         public EndScreen()
         {
             InitializeComponent();
+            if (GameScreen.blocks.Count > 0)
+            {
+                pictureBox1.BackgroundImage = Properties.Resources.YOU_DIED_4_25_2024_removebg_preview;
+            }
+            else
+            {
+                pictureBox1.BackgroundImage = Properties.Resources.YOU_WIN_4_25_2024_removebg_preview;
+            }
         }
 
         private void playButton_Click(object sender, EventArgs e)

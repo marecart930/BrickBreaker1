@@ -60,11 +60,12 @@ namespace BrickBreaker
         public static bool extendBool;
         public static bool startBool;
         public static bool rcCarBool;
+        bool paused = false;
 
         public static string level;
 
         // list of all blocks for current level
-        List<Block> blocks = new List<Block>();
+        public static List<Block> blocks = new List<Block>();
 
         // Brushes
         SolidBrush grayBrush = new SolidBrush(Color.Gray);
@@ -119,8 +120,8 @@ namespace BrickBreaker
 
             // setup starting paddle values and create paddle object
 
-            int paddleWidth = 80;
-            int paddleHeight = 105;
+            int paddleWidth = 80 / 2;
+            int paddleHeight = 105 / 2;
             int paddleX = ((this.Width / 2) - (paddleWidth / 2));
             int paddleY = (this.Height - paddleHeight) - 70;
             int paddleSpeed = 7;
@@ -199,7 +200,19 @@ namespace BrickBreaker
                     spaceDown = true;
                     break;
                 case Keys.Escape:
-                    Application.Exit();
+                    //pausing
+                    if(paused)
+                    {
+                        paused = false;
+                        pressStartLabel.Text = "Press Space to Launch Ball";
+                        pressStartLabel.Visible = false;
+                    }
+                    else
+                    {
+                        paused = true;
+                        pressStartLabel.Text = "Press ESC to Resume";
+                        pressStartLabel.Visible = true;
+                    }
                     break;
                 default:
                     break;
@@ -227,360 +240,352 @@ namespace BrickBreaker
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
-            //test code to slow game down (will be removed for final game)
-            if (spaceDown)
+            if (!paused)
             {
-                gameTimer.Interval = 100;
-            }
-            else
-            {
-                gameTimer.Interval = 1;
-            }
-
-            // Move the paddle
-            if (leftArrowDown && paddle.x > 0)
-            {
-                paddle.Move("left");
-            }
-            if (rightArrowDown && paddle.x < (this.Width - paddle.width))
-            {
-                paddle.Move("right");
-            }
-
-            // Move ball
-            foreach (Ball b in balls)
-            {
-                b.Move();
-            }
-
-
-            // Check for collision with top and side walls
-            foreach (Ball b in balls)
-            {
-                b.WallCollision(this);
-            }
-
-
-            // Check for ball hitting bottom of screen
-            for (int i = 0; i < balls.Count; i++)
-            {
-                if (balls[i].BottomCollision(this))
+                //test code to slow game down (will be removed for final game)
+                if (spaceDown)
                 {
-                    balls.RemoveAt(i);
-
-                    if (balls.Count == 0)
-                    {
-                        //delete active powerups
-                        pressStartLabel.Visible = true;
-                        gravityBool = false;
-                        breakthroughBool = false;
-                        extendBool = false;
-                        gravityTimer.Reset();
-                        breakTimer.Reset();
-                        extendTimer.Reset();
-
-                        lives--;
-
-                        // Moves the ball back to origin
-                        ball.xSpeed = 0;
-                        ball.ySpeed = 0;
-                        balls.Add(ball);
-                        balls[i].x = ((paddle.x - (ball.size / 2)) + (paddle.width / 2));
-                        balls[i].y = (this.Height - paddle.height) - 105;
-                    }
-
-                    if (lives == 0)
-                    {
-                        gameTimer.Enabled = false;
-                        OnEnd();
-                    }
+                    gameTimer.Interval = 100;
                 }
-            }
+                else
+                {
+                    gameTimer.Interval = 1;
+                }
 
-            // Check for collision of ball with paddle, (incl. paddle movement)
-            foreach (Ball b in balls)
-            {
+                // Move the paddle
+                if (leftArrowDown && paddle.x > 0)
+                {
+                    paddle.Move("left");
+                }
+                if (rightArrowDown && paddle.x < (this.Width - paddle.width))
+                {
+                    paddle.Move("right");
+                }
+
+                // Move ball
+                foreach (Ball b in balls)
+                {
+                    b.Move();
+                }
+
+
+                // Check for collision with top and side walls
+                foreach (Ball b in balls)
+                {
+                    b.WallCollision(this);
+                }
+
+
+                // Check for ball hitting bottom of screen
                 for (int i = 0; i < balls.Count; i++)
                 {
-                    if (balls[i].xSpeed == 0 && balls[i].ySpeed == 0)
+                    if (balls[i].BottomCollision(this))
                     {
-                        //do nothing
-                    }
-                    else
-                    {
-                        b.PaddleCollision(paddle, extraSpeed);
-                    }
-                }
-            }
+                        balls.RemoveAt(i);
 
-            // Check if ball has collided with any blocks
-            foreach (Block b in blocks)
-            {
-                bool keepLooking = true;
-
-                for (int i = 0; i < balls.Count; i++)
-                {
-                    if (balls[i].BlockCollision(b))
-                    {
-                        //do not collide if ball has not been launched
-                        if (balls[i].xSpeed == 0 && balls[i].ySpeed == 0)
+                        if (balls.Count == 0)
                         {
-                            break;
+                            //delete active powerups
+                            pressStartLabel.Visible = true;
+                            gravityBool = false;
+                            breakthroughBool = false;
+                            extendBool = false;
+                            gravityTimer.Reset();
+                            breakTimer.Reset();
+                            extendTimer.Reset();
+
+                            lives--;
+
+                            // Moves the ball back to origin
+                            ball.xSpeed = 0;
+                            ball.ySpeed = 0;
+                            balls.Add(ball);
+                            balls[i].x = ((paddle.x - (ball.size / 2)) + (paddle.width / 2));
+                            balls[i].y = (this.Height - paddle.height) - 105;
                         }
 
-                        b.hp--;
-
-                        // if block hp = 0
-                        if (b.hp == 0)
-                        {
-                            //random chance to spawn a powerup
-                            if (r.Next(1, 3) == 1)
-                            {
-                                Powers power = new Powers(b.x + (b.width / 2), b.y + (b.height / 2), "");
-                                powerList.Add(power);
-                            }
-                            keepLooking = false;
-                            blocks.Remove(b);
-
-                        }
-
-                        if (blocks.Count == 0)
+                        if (lives == 0)
                         {
                             gameTimer.Enabled = false;
                             OnEnd();
                         }
-
-                        break;
                     }
-
-                }
-                // break out of loop
-                if (keepLooking == false)
-                {
-                    break;
                 }
 
-            }
-
-            // Powers
-            foreach (Powers p in powerList)
-            {
-                //move each powerBall
-                if (ball.xSpeed != 0 && ball.ySpeed != 0)
-                {
-                    p.Move();
-                }
-
-                //check for paddle collision to see if the player deserves powerup
-                if (p.Collision(paddle))
-                {
-                    //determine what kind of powerup it is
-                    switch (p.type)
-                    {
-                        case "Breakthrough":
-                            //unstoppable ball for duration of time
-                            if (breakTimer.IsRunning == true)
-                            {
-                                breakTimer.Restart();
-                            }
-                            else
-                            {
-                                breakTimer.Start();
-                                breakthroughBool = true;
-                                ballBrush.Color = Color.LightBlue;
-                            }
-                            break;
-                        case "Gravity":
-                            //arc balls back upwards
-                            if (gravityTimer.IsRunning == true)
-                            {
-                                gravityTimer.Restart();
-                            }
-                            else
-                            {
-                                gravityTimer.Start();
-                                gravityBool = true;
-                                ballBrush.Color = Color.LightPink;
-                            }
-                            break;
-                        case "Health":
-                            //grants the player an extra life, capped at 5 lives
-                            if (lives < 5)
-                            {
-                                lives++;
-                            }
-                            break;
-                        case "MultiBall":
-                            //creates a new ball foreach ball currently on screen
-                            int ballCount = balls.Count;
-                            if (ballCount >= 2)
-                            {
-                                ballCount = 1;
-                            }
-                            for (int i = 0; i < ballCount; i++)
-                            {
-                                Ball newBall = new Ball(balls[i].x, balls[i].y, balls[i].xSpeed * -1, balls[i].ySpeed, ball.size);
-                                balls.Add(newBall);
-                            }
-
-                            break;
-                        case "ExtendPaddle":
-                            //extends paddle
-                            if (extendTimer.IsRunning == true)
-                            {
-                                extendTimer.Restart();
-                            }
-                            else
-                            {
-                                extendTimer.Start();
-                                extendBool = true;
-
-                                paddle.width += 40;
-                                paddle.x -= 20;
-                                rc_car.X = paddle.x;
-                                rc_car.Width = paddle.width;
-                            }
-                            break;
-                    }
-                    //delete the powerBall
-                    powerList.Remove(p);
-                    break;
-                }
-                // if powerBall goes offscreen, delete the ball
-                if (p.y > this.Height + 50)
-                {
-                    powerList.Remove(p);
-                    break;
-                }
-                // remove powerBall if it is in pause-mode and reachable by the paddle
-                else if (ball.xSpeed == 0 && ball.ySpeed == 0 && p.y > paddle.y - 30)
-                {
-                    powerList.Remove(p);
-                    break;
-                }
-
-            }
-
-            //check if duration has run out for each powerup
-
-            //breakThrough
-            if (4 < Convert.ToDouble(breakTimer.ElapsedMilliseconds / 1000))
-            {
-                breakTimer.Reset();
-                ballBrush.Color = Color.White;
-                breakthroughBool = false;
-            }
-
-            //extend powerup
-            if (10 < Convert.ToDouble(extendTimer.ElapsedMilliseconds / 1000))
-            {
-                extendTimer.Reset();
-                paddle.width -= 40;
-                paddle.x += 20;
-                rc_car.X = paddle.x;
-                rc_car.Width = paddle.width;
-                extendBool = false;
-            }
-
-            //gravity powerup
-            if (7 < Convert.ToDouble(gravityTimer.ElapsedMilliseconds / 1000))
-            {
-                gravityTimer.Reset();
-                gravityBool = false;
-                ballBrush.Color = Color.White;
-            }
-
-            //ball animations
-            ballWatch.Start();
-            if (ballWatch.ElapsedMilliseconds >= 200)
-            {
-                ballig = Properties.Resources.toy_story_ball_down1;
-            }
-            if (ballWatch.ElapsedMilliseconds >= 400)
-            {
-                ballig = Properties.Resources.toy_story_ball_right1;
-            }
-            if (ballWatch.ElapsedMilliseconds >= 600)
-            {
-                ballig = Properties.Resources.toy_story_ball_up1;
-            }
-            if (ballWatch.ElapsedMilliseconds >= 1000)
-            {
-                ballig = Properties.Resources.toy_story_ball_left1;
-                ballWatch.Restart();
-            }
-
-            // keep ball above paddle before release
-            if (spaceDown == true && ball.xSpeed == 0)
-            {
-                pressStartLabel.Visible = false;
-                //determine which way the ball travels
-                if (leftArrowDown == true)
-                {
-                    //release ball with more left force
-                    ball.xSpeed = -8;
-                    ball.ySpeed = -8;
-                }
-                else if (rightArrowDown == true)
-                {
-                    //release ball with more right force
-                    ball.xSpeed = 8;
-                    ball.ySpeed = -8;
-                }
-                else
-                {
-                    //release ball with more upward force
-                    ball.xSpeed = r.Next(3, 6);
-                    if (r.Next(1, 3) == 1)
-                    {
-                        ball.xSpeed *= -1;
-                    }
-                    ball.ySpeed = r.Next(-8, -5);
-                }
-            }
-            // center ball to paddle at pause
-            if (ball.xSpeed == 0 && ball.ySpeed == 0)
-            {
-                ball.x = ((paddle.x - (ball.size / 2)) + (paddle.width / 2));
-                ball.y = (this.Height - paddle.height) - 115;
-            }
-
-            //speeding up the ball every 5 seconds
-            counter++;
-            if (counter % 5000 == 0)
-            {
-                extraSpeed++;
-            }
-
-            if (counter % counterInterval == 0)
-            {
-                foreach (Block b in blocks)
+                // Check for collision of ball with paddle, (incl. paddle movement)
+                foreach (Ball b in balls)
                 {
                     for (int i = 0; i < balls.Count; i++)
                     {
                         if (balls[i].xSpeed == 0 && balls[i].ySpeed == 0)
                         {
-                            // do nothing
+                            //do nothing
                         }
                         else
                         {
-                            //slowly make blocks fall
-
-                            b.y += 10;
-
-                            if (b.y >= paddle.y)
-                            {
-                                gameTimer.Enabled = false;
-                                OnEnd();
-                                break;
-                            }
+                            b.PaddleCollision(paddle, extraSpeed);
                         }
                     }
                 }
-            }
 
-            //redraws the screen
-            Refresh();
+                // Check if ball has collided with any blocks
+                foreach (Block b in blocks)
+                {
+                    bool keepLooking = true;
+
+                    for (int i = 0; i < balls.Count; i++)
+                    {
+                        if (balls[i].BlockCollision(b))
+                        {
+                            //do not collide if ball has not been launched
+                            if (balls[i].xSpeed == 0 && balls[i].ySpeed == 0)
+                            {
+                                break;
+                            }
+
+                            b.hp--;
+
+                            // if block hp = 0
+                            if (b.hp == 0)
+                            {
+                                //random chance to spawn a powerup
+                                if (r.Next(1, 3) == 1)
+                                {
+                                    Powers power = new Powers(b.x + (b.width / 2), b.y + (b.height / 2), "");
+                                    powerList.Add(power);
+                                }
+                                keepLooking = false;
+                                blocks.Remove(b);
+
+                            }
+
+                            if (blocks.Count == 0)
+                            {
+                                gameTimer.Enabled = false;
+                                OnEnd();
+                            }
+
+                            break;
+                        }
+
+                    }
+                    // break out of loop
+                    if (keepLooking == false)
+                    {
+                        break;
+                    }
+
+                }
+
+                // Powers
+                foreach (Powers p in powerList)
+                {
+                    //move each powerBall
+                    if (ball.xSpeed != 0 && ball.ySpeed != 0)
+                    {
+                        p.Move();
+                    }
+
+                    //check for paddle collision to see if the player deserves powerup
+                    if (p.Collision(paddle))
+                    {
+                        //determine what kind of powerup it is
+                        switch (p.type)
+                        {
+                            case "Breakthrough":
+                                //unstoppable ball for duration of time
+                                if (breakTimer.IsRunning == true)
+                                {
+                                    breakTimer.Restart();
+                                }
+                                else
+                                {
+                                    breakTimer.Start();
+                                    breakthroughBool = true;
+                                    ballBrush.Color = Color.LightBlue;
+                                }
+                                break;
+                            case "Gravity":
+                                //arc balls back upwards
+                                if (gravityTimer.IsRunning == true)
+                                {
+                                    gravityTimer.Restart();
+                                }
+                                else
+                                {
+                                    gravityTimer.Start();
+                                    gravityBool = true;
+                                    ballBrush.Color = Color.LightPink;
+                                }
+                                break;
+                            case "Health":
+                                //grants the player an extra life, capped at 5 lives
+                                if (lives < 5)
+                                {
+                                    lives++;
+                                }
+                                break;
+                            case "MultiBall":
+                                //creates a new ball foreach ball currently on screen
+                                int ballCount = balls.Count;
+                                if (ballCount >= 2)
+                                {
+                                    ballCount = 1;
+                                }
+                                for (int i = 0; i < ballCount; i++)
+                                {
+                                    Ball newBall = new Ball(balls[i].x, balls[i].y, balls[i].xSpeed * -1, balls[i].ySpeed, ball.size);
+                                    balls.Add(newBall);
+                                }
+
+                                break;
+                            case "ExtendPaddle":
+                                //extends paddle
+                                if (extendTimer.IsRunning == true)
+                                {
+                                    extendTimer.Restart();
+                                }
+                                else
+                                {
+                                    extendTimer.Start();
+                                    extendBool = true;
+
+                                    paddle.width += 40;
+                                    paddle.x -= 20;
+                                    rc_car.X = paddle.x;
+                                    rc_car.Width = paddle.width;
+                                }
+                                break;
+                        }
+                        //delete the powerBall
+                        powerList.Remove(p);
+                        break;
+                    }
+                    // if powerBall goes offscreen, delete the ball
+                    if (p.y > this.Height + 50)
+                    {
+                        powerList.Remove(p);
+                        break;
+                    }
+                    // remove powerBall if it is in pause-mode and reachable by the paddle
+                    else if (ball.xSpeed == 0 && ball.ySpeed == 0 && p.y > paddle.y - 30)
+                    {
+                        powerList.Remove(p);
+                        break;
+                    }
+
+                }
+
+                //check if duration has run out for each powerup
+
+                //breakThrough
+                if (4 < Convert.ToDouble(breakTimer.ElapsedMilliseconds / 1000))
+                {
+                    breakTimer.Reset();
+                    ballBrush.Color = Color.White;
+                    breakthroughBool = false;
+                }
+
+                //extend powerup
+                if (10 < Convert.ToDouble(extendTimer.ElapsedMilliseconds / 1000))
+                {
+                    extendTimer.Reset();
+                    paddle.width -= 40;
+                    paddle.x += 20;
+                    rc_car.X = paddle.x;
+                    rc_car.Width = paddle.width;
+                    extendBool = false;
+                }
+
+                //gravity powerup
+                if (7 < Convert.ToDouble(gravityTimer.ElapsedMilliseconds / 1000))
+                {
+                    gravityTimer.Reset();
+                    gravityBool = false;
+                    ballBrush.Color = Color.White;
+                }
+
+                //ball animations
+                ballWatch.Start();
+                if (ballWatch.ElapsedMilliseconds >= 200)
+                {
+                    ballig = Properties.Resources.toy_story_ball_down1;
+                }
+                if (ballWatch.ElapsedMilliseconds >= 400)
+                {
+                    ballig = Properties.Resources.toy_story_ball_right1;
+                }
+                if (ballWatch.ElapsedMilliseconds >= 600)
+                {
+                    ballig = Properties.Resources.toy_story_ball_up1;
+                }
+                if (ballWatch.ElapsedMilliseconds >= 1000)
+                {
+                    ballig = Properties.Resources.toy_story_ball_left1;
+                    ballWatch.Restart();
+                }
+
+                // keep ball above paddle before release
+                if (spaceDown == true && ball.xSpeed == 0)
+                {
+                    pressStartLabel.Visible = false;
+                    //determine which way the ball travels
+                    if (leftArrowDown == true)
+                    {
+                        //release ball with more left force
+                        ball.xSpeed = -8;
+                        ball.ySpeed = -8;
+                    }
+                    else if (rightArrowDown == true)
+                    {
+                        //release ball with more right force
+                        ball.xSpeed = 8;
+                        ball.ySpeed = -8;
+                    }
+                    else
+                    {
+                        //release ball with more upward force
+                        ball.xSpeed = r.Next(3, 6);
+                        if (r.Next(1, 3) == 1)
+                        {
+                            ball.xSpeed *= -1;
+                        }
+                        ball.ySpeed = r.Next(-8, -5);
+                    }
+                }
+                // center ball to paddle at pause
+                if (ball.xSpeed == 0 && ball.ySpeed == 0)
+                {
+                    ball.x = ((paddle.x - (ball.size / 2)) + (paddle.width / 2));
+                    ball.y = (this.Height - paddle.height) - 115;
+                }
+
+                //speeding up the ball every 5 seconds
+                counter++;
+                if (counter % 5000 == 0)
+                {
+                    extraSpeed++;
+                }
+
+                if (counter % counterInterval == 0)
+                {
+                    foreach (Block b in blocks)
+                    {
+                        //slowly drop blocks
+                        b.y += 10;
+
+                        if (b.y >= paddle.y)
+                        {
+                            gameTimer.Enabled = false;
+                            OnEnd();
+                            break;
+                        }
+                    }
+                }
+
+                //redraws the screen
+                Refresh();
+            }
         }
 
         public void OnEnd()
@@ -591,24 +596,14 @@ namespace BrickBreaker
             gravityBool = false;
             breakthroughBool = false;
             extendBool = false;
+            balls.Clear();
 
             // Goes to the game over screen
-            if (blocks.Count != 0)
-            {
-                Form form = this.FindForm();
-                EndScreen ps = new EndScreen();
-                form.Controls.Add(ps);
-                ps.Location = new Point((form.Width - ps.Width) / 2, (form.Height - ps.Height) / 2);
-                form.Controls.Remove(this);
-            }
-            else
-            {
-                Form form = this.FindForm();
-                MenuScreen mm = new MenuScreen();
-                form.Controls.Add(mm);
-                mm.Location = new Point((form.Width - mm.Width) / 2, (form.Height - mm.Height) / 2);
-                form.Controls.Remove(this);
-            }
+            Form form = this.FindForm();
+            EndScreen ps = new EndScreen();
+            form.Controls.Add(ps);
+            ps.Location = new Point((form.Width - ps.Width) / 2, (form.Height - ps.Height) / 2);
+            form.Controls.Remove(this);
         }
 
         public void GameScreen_Paint(object sender, PaintEventArgs e)
@@ -720,6 +715,22 @@ namespace BrickBreaker
                 xVal += 25;
             }
 
+            xVal = this.Width - 10 - Powers.powerupSize;
+            //power up tracker
+            if (breakthroughBool)
+            {
+                e.Graphics.DrawImage(breakthroughimage, xVal, this.Height - 40, Powers.powerupSize, Powers.powerupSize);
+                xVal -= 25;
+            }
+            if (gravityBool)
+            {
+                e.Graphics.DrawImage(gravityimage, xVal, this.Height - 40, Powers.powerupSize, Powers.powerupSize);
+                xVal -= 25;
+            }
+            if (extendBool)
+            {
+                e.Graphics.DrawImage(extendedpadleimage, xVal, this.Height - 40, Powers.powerupSize, Powers.powerupSize);
+            }
         }
     }
 }
