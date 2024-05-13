@@ -346,7 +346,7 @@ namespace BrickBreaker
                             if (b.hp == 0)
                             {
                                 //random chance to spawn a powerup
-                                if (r.Next(1, 3) == 1)
+                                if (r.Next(1, 4) == 1)
                                 {
                                     Powers power = new Powers(b.x + (b.width / 2), b.y + (b.height / 2), "");
                                     powerList.Add(power);
