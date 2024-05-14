@@ -1,6 +1,7 @@
 ﻿using System;
 using System.CodeDom;
 using System.Drawing;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using System.Xml.XPath;
 

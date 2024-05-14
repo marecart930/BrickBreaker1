@@ -13,12 +13,14 @@ namespace BrickBreaker
 {
     public partial class Form1 : Form
     {
+        public static System.Windows.Media.MediaPlayer backSound = new System.Windows.Media.MediaPlayer();
 
         public Form1()
         {
             InitializeComponent();
-    }
-        public static SoundPlayer backSound = new SoundPlayer(Properties.Resources.menuSong);
+            backSound.Open(new Uri(Application.StartupPath + "\\Resources\\Randy Newman - You've Got A Friend In Me (minus 2).wav"));
+            backSound.MediaEnded += new EventHandler(backSoundEnded);
+        }
 
 
         private void Form1_Load(object sender, EventArgs e)
@@ -28,6 +30,12 @@ namespace BrickBreaker
             this.Controls.Add(ms);
 
             ms.Location = new Point((this.Width - ms.Width) / 2, (this.Height - ms.Height) / 2);
+        }
+
+        private void backSoundEnded(object sender, EventArgs e)
+        {
+            backSound.Stop();
+            backSound.Play();
         }
     }
 }

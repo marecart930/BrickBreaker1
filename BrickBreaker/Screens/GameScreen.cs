@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Media;
 using System.Windows.Forms;
 using System.Xml;
 using BrickBreaker.Screens;
@@ -93,6 +94,13 @@ namespace BrickBreaker
 
         Stopwatch ballWatch = new Stopwatch();
 
+        //sounds
+        SoundPlayer brickHit = new SoundPlayer(Properties.Resources.brickHit);
+        SoundPlayer paddleHit = new SoundPlayer(Properties.Resources.paddleHit);
+
+        List<System.Windows.Media.MediaPlayer> sounds = new List<System.Windows.Media.MediaPlayer>();
+
+
         public GameScreen()
         {
             InitializeComponent();
@@ -102,6 +110,14 @@ namespace BrickBreaker
         private void GameScreen_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void playSound(string handle)
+        {
+            var sound = new System.Windows.Media.MediaPlayer();
+            sound.Open(new Uri(Application.StartupPath + handle));
+            sounds.Add(sound);
+            sounds[sounds.Count - 1].Play();
         }
 
         public void OnStart()
@@ -115,8 +131,6 @@ namespace BrickBreaker
             //set life counter
             lives = 3;
             counter = extraSpeed = 0;
-
-            List<Label> labels = new List<Label>();
 
             //set all button presses to false.
             leftArrowDown = rightArrowDown = spaceDown = false;
@@ -239,16 +253,6 @@ namespace BrickBreaker
         {
             if (!paused)
             {
-                //test code to slow game down (will be removed for final game)
-                if (spaceDown)
-                {
-                    gameTimer.Interval = 100;
-                }
-                else
-                {
-                    gameTimer.Interval = 1;
-                }
-
                 // Move the paddle
                 if (leftArrowDown && paddle.x > 0)
                 {
@@ -362,6 +366,7 @@ namespace BrickBreaker
                                 OnEnd();
                             }
 
+                            playSound("\\Resources\\minecraft---place-item-sound-made-with-Voicemod.wav");
                             break;
                         }
 
@@ -601,6 +606,8 @@ namespace BrickBreaker
             form.Controls.Add(ps);
             ps.Location = new Point((form.Width - ps.Width) / 2, (form.Height - ps.Height) / 2);
             form.Controls.Remove(this);
+
+            sounds.Clear();
         }
 
         public void GameScreen_Paint(object sender, PaintEventArgs e)
