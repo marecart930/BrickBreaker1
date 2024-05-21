@@ -51,6 +51,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -62,6 +63,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ball.cs" />
@@ -290,13 +292,19 @@
     <None Include="Resources\truck.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\minecraft---place-item-sound-made-with-Voicemod.wav" />
+    <None Include="Resources\minecraft---place-item-sound-made-with-Voicemod.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\4359__noisecollector__pongblipf4.wav" />
+    <None Include="Resources\4359__noisecollector__pongblipf4.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Randy Newman - You%27ve Got A Friend In Me %28minus 2%29.wav" />
+    <None Include="Resources\Randy Newman - You%27ve Got A Friend In Me %28minus 2%29.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\image.png" />
